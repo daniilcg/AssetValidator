@@ -1,0 +1,14 @@
+# Core runtime dependencies
+numpy>=1.21.0
+
+# Optional USD bindings (install matching your USD build)
+# pxr-usd
+
+# Optional database drivers
+# psycopg2-binary>=2.9.0  # PostgreSQL
+# pymongo>=4.0.0          # MongoDB
+
+# Development / testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+click>=8.0.0

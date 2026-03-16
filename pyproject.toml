@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asset-validator"
+version = "0.1.0"
+description = "Production-grade asset validation for VFX pipelines with USD support."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "numpy>=1.21.0",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=7.0.0",
+  "pytest-cov>=4.0.0",
+]
+cli = [
+  "click>=8.0.0",
+]
+postgres = [
+  "psycopg2-binary>=2.9.0",
+]
+mongodb = [
+  "pymongo>=4.0.0",
+]
+
+[project.scripts]
+validate-assets = "pipeline.core.asset_validator:main_cli"
+
+[tool.setuptools]
+py-modules = ["AssetValidator"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests*", "pipeline/core/.mypy_cache*"]
+
