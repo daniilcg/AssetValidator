@@ -1,5 +1,6 @@
 """Unit tests for asset validator."""
 
+import json
 import shutil
 import tempfile
 import unittest
@@ -130,6 +131,63 @@ class TestAssetValidator(unittest.TestCase):
             with self.assertRaises(SystemExit) as cm:
                 cli_module.main_cli()
             # CLI should exit with success for valid asset
+            self.assertEqual(cm.exception.code, 0)
+        finally:
+            sys.argv = argv_backup
+
+    def test_cli_argparse_input_txt(self):
+        """Argparse fallback: --input .txt is supported."""
+        import sys
+
+        cli_asset = self.asset_root / "cli_input_txt.usd"
+        cli_asset.write_text("#usda 1.0\n", encoding="utf-8")
+
+        input_file = Path(self.test_dir) / "assets.txt"
+        input_file.write_text("a1:v001:cli_input_txt.usd\n", encoding="utf-8")
+
+        argv_backup = sys.argv
+        sys.argv = [
+            "validate-assets",
+            "--asset-root",
+            str(self.asset_root),
+            "--cache-root",
+            str(self.cache_root),
+            "--input",
+            str(input_file),
+        ]
+        try:
+            with self.assertRaises(SystemExit) as cm:
+                cli_module._main_cli_argparse()
+            self.assertEqual(cm.exception.code, 0)
+        finally:
+            sys.argv = argv_backup
+
+    def test_cli_argparse_input_json(self):
+        """Argparse fallback: --input .json is supported."""
+        import sys
+
+        cli_asset = self.asset_root / "cli_input_json.usd"
+        cli_asset.write_text("#usda 1.0\n", encoding="utf-8")
+
+        input_file = Path(self.test_dir) / "assets.json"
+        input_file.write_text(
+            json.dumps(["a2:v001:cli_input_json.usd"]),
+            encoding="utf-8",
+        )
+
+        argv_backup = sys.argv
+        sys.argv = [
+            "validate-assets",
+            "--asset-root",
+            str(self.asset_root),
+            "--cache-root",
+            str(self.cache_root),
+            "--input",
+            str(input_file),
+        ]
+        try:
+            with self.assertRaises(SystemExit) as cm:
+                cli_module._main_cli_argparse()
             self.assertEqual(cm.exception.code, 0)
         finally:
             sys.argv = argv_backup

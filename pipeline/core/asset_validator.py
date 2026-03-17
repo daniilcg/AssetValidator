@@ -11,14 +11,19 @@ import gc
 import json
 import logging
 import sys
-from concurrent.futures import ThreadPoolExecutor, as_completed, TimeoutError
+from concurrent.futures import ThreadPoolExecutor, TimeoutError, as_completed
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import List, Optional, Tuple, Union
 
 from pipeline.config.settings import Settings
-from pipeline.core.db_interface import AssetDatabase, MockAssetDatabase
+from pipeline.core.db_interface import (
+    AssetDatabase,
+    MockAssetDatabase,
+    MongoAssetDatabase,
+    PostgresAssetDatabase,
+)
 from pipeline.core.exceptions import (
     AssetCorruptedError,
     AssetNotFoundError,
@@ -135,21 +140,20 @@ class AssetValidator:
         blocksize: Optional[int] = None,
         log_level: Optional[str] = None,
     ):
-        self.settings = Settings()
+        self.settings = Settings.from_env()
+        self.settings.validate()
 
-        self.asset_root = Path(asset_root or self.settings.ASSET_ROOT)
-        self.cache_root = Path(cache_root or self.settings.CACHE_ROOT)
+        self.asset_root = Path(asset_root or self.settings.asset_root)
+        self.cache_root = Path(cache_root or self.settings.cache_root)
         self.db = db or MockAssetDatabase()
-        self.threads = threads or self.settings.DEFAULT_THREADS
-        self.enable_cache = (
-            enable_cache if enable_cache is not None else self.settings.ENABLE_CACHE
-        )
-        self.timeout = timeout or self.settings.VALIDATION_TIMEOUT
-        self.blocksize = blocksize or self.settings.HASH_BLOCKSIZE
+        self.threads = threads or self.settings.default_threads
+        self.enable_cache = enable_cache if enable_cache is not None else self.settings.enable_cache
+        self.timeout = timeout or self.settings.validation_timeout
+        self.blocksize = blocksize or self.settings.hash_blocksize
 
         self.logger = logging.getLogger(__name__)
         self._setup_directories()
-        self._setup_logging(log_level=log_level or self.settings.LOG_LEVEL)
+        self._setup_logging(log_level=log_level or self.settings.log_level)
 
         self.hash_cache = self.cache_root / "hashes"
         self.hash_cache.mkdir(parents=True, exist_ok=True)
@@ -185,7 +189,7 @@ class AssetValidator:
 
         mtime = datetime.fromtimestamp(cache_file.stat().st_mtime)
         age_days = (datetime.now() - mtime).days
-        if age_days > self.settings.CACHE_TTL_DAYS:
+        if age_days > self.settings.cache_ttl_days:
             self.logger.debug(f"Cache expired for {asset_name} {version}")
             try:
                 cache_file.unlink()
@@ -214,7 +218,7 @@ class AssetValidator:
 
         try:
             try:
-                from pxr import Sdf, Usd  # type: ignore
+                from pxr import Sdf, Usd
             except ImportError:
                 self.logger.debug("USD modules not available, skipping deep validation")
                 return file_path.exists(), []
@@ -355,9 +359,7 @@ class AssetValidator:
                                 summary.mismatched += 1
 
                         if raise_on_failure:
-                            raise AssetValidationError(
-                                f"Validation failed: {asset_name} {version}"
-                            )
+                            raise AssetValidationError(f"Validation failed: {asset_name} {version}")
 
                 except TimeoutError:
                     summary.failed += 1
@@ -402,6 +404,157 @@ class AssetValidator:
 
 
 def main_cli() -> None:
+    """Entrypoint for `validate-assets`.
+
+    - If `click` is installed, uses a richer click-based CLI.
+    - Otherwise falls back to argparse to keep the command working with minimal deps.
+    """
+
+    try:
+        import click
+    except ImportError:
+        _main_cli_argparse()
+        return
+
+    @click.command(context_settings={"help_option_names": ["-h", "--help"]})
+    @click.option("--asset-root", type=click.Path(path_type=Path), help="Asset root directory")
+    @click.option("--cache-root", type=click.Path(path_type=Path), help="Cache directory")
+    @click.option("--threads", type=int, default=None, help="Number of threads")
+    @click.option("--timeout", type=int, default=None, help="Timeout in seconds")
+    @click.option("--output", type=click.Path(path_type=Path), help="Output report JSON file")
+    @click.option(
+        "--input",
+        "input_path",
+        type=click.Path(path_type=Path, exists=True, dir_okay=False),
+        help="Read assets from a .txt (name:version:path per line) or .json file",
+    )
+    @click.option(
+        "--db",
+        "db_backend",
+        type=click.Choice(["mock", "postgres", "mongo"], case_sensitive=False),
+        default="mock",
+        show_default=True,
+        help="Database backend",
+    )
+    @click.option("--dsn", type=str, default=None, help="PostgreSQL DSN (for --db postgres)")
+    @click.option("--mongo-uri", type=str, default=None, help="MongoDB URI (for --db mongo)")
+    @click.option("--mongo-db", type=str, default="asset_db", show_default=True)
+    @click.option("--mongo-collection", type=str, default="assets", show_default=True)
+    @click.argument("assets", nargs=-1)
+    def _cli(
+        asset_root: Path | None,
+        cache_root: Path | None,
+        threads: int | None,
+        timeout: int | None,
+        output: Path | None,
+        input_path: Path | None,
+        db_backend: str,
+        dsn: str | None,
+        mongo_uri: str | None,
+        mongo_db: str,
+        mongo_collection: str,
+        assets: tuple[str, ...],
+    ) -> None:
+        try:
+            parsed_assets = _collect_assets(list(assets), input_path=input_path)
+        except ValueError as exc:
+            raise click.UsageError(str(exc)) from exc
+
+        db = _create_db(
+            db_backend=db_backend.lower(),
+            dsn=dsn,
+            mongo_uri=mongo_uri,
+            mongo_db=mongo_db,
+            mongo_collection=mongo_collection,
+        )
+
+        validator = AssetValidator(
+            asset_root=asset_root,
+            cache_root=cache_root,
+            db=db,
+            threads=threads,
+            timeout=timeout,
+        )
+
+        summary = validator.validate_batch(parsed_assets)
+        summary.print_report()
+
+        if output:
+            validator.export_report(summary, output)
+
+        raise SystemExit(0 if summary.failed == 0 else 1)
+
+    _cli()
+
+
+def _create_db(
+    db_backend: str,
+    dsn: str | None,
+    mongo_uri: str | None,
+    mongo_db: str,
+    mongo_collection: str,
+) -> AssetDatabase:
+    if db_backend == "mock":
+        return MockAssetDatabase()
+    if db_backend == "postgres":
+        if not dsn:
+            raise ValueError("--dsn is required for --db postgres")
+        return PostgresAssetDatabase(dsn=dsn)
+    if db_backend == "mongo":
+        if not mongo_uri:
+            raise ValueError("--mongo-uri is required for --db mongo")
+        return MongoAssetDatabase(uri=mongo_uri, db_name=mongo_db, collection_name=mongo_collection)
+    raise ValueError(f"Unknown db backend: {db_backend}")
+
+
+def _parse_asset_triplet(asset_str: str) -> Tuple[str, str, str]:
+    try:
+        name, version, path = asset_str.split(":", 2)
+    except ValueError as exc:
+        raise ValueError(f"Invalid asset format: {asset_str} (expected name:version:path)") from exc
+    if not name or not version or not path:
+        raise ValueError(f"Invalid asset format: {asset_str} (empty field)")
+    return name, version, path
+
+
+def _collect_assets(asset_args: List[str], input_path: Path | None) -> List[Tuple[str, str, str]]:
+    if input_path:
+        loaded = _load_assets_file(input_path)
+        if asset_args:
+            loaded.extend(asset_args)
+        asset_args = loaded
+
+    if not asset_args:
+        raise ValueError("No assets provided. Pass assets or use --input.")
+
+    return [_parse_asset_triplet(a) for a in asset_args]
+
+
+def _load_assets_file(path: Path) -> List[str]:
+    suffix = path.suffix.lower()
+    if suffix == ".json":
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(data, list):
+            raise ValueError("JSON input must be a list of 'name:version:path' strings")
+        out: List[str] = []
+        for item in data:
+            if not isinstance(item, str):
+                raise ValueError("JSON input list must contain only strings")
+            out.append(item)
+        return out
+
+    # default: text
+    lines = path.read_text(encoding="utf-8").splitlines()
+    out = []
+    for line in lines:
+        s = line.strip()
+        if not s or s.startswith("#"):
+            continue
+        out.append(s)
+    return out
+
+
+def _main_cli_argparse() -> None:
     import argparse
 
     parser = argparse.ArgumentParser(description="Validate assets in VFX pipeline")
@@ -410,23 +563,40 @@ def main_cli() -> None:
     parser.add_argument("--threads", type=int, default=None, help="Number of threads")
     parser.add_argument("--timeout", type=int, default=None, help="Timeout in seconds")
     parser.add_argument("--output", type=str, help="Output report file")
-    parser.add_argument("assets", nargs="+", help="Assets in format name:version:path")
+    parser.add_argument("--input", dest="input_path", type=str, help="Assets input .txt/.json file")
+    parser.add_argument(
+        "--db",
+        dest="db_backend",
+        choices=["mock", "postgres", "mongo"],
+        default="mock",
+        help="Database backend",
+    )
+    parser.add_argument("--dsn", type=str, default=None, help="PostgreSQL DSN (for --db postgres)")
+    parser.add_argument("--mongo-uri", type=str, default=None, help="MongoDB URI (for --db mongo)")
+    parser.add_argument("--mongo-db", type=str, default="asset_db")
+    parser.add_argument("--mongo-collection", type=str, default="assets")
+    parser.add_argument("assets", nargs="*", help="Assets in format name:version:path")
 
     args = parser.parse_args()
 
-    assets: List[Tuple[str, str, str]] = []
-    for asset_str in args.assets:
-        try:
-            name, version, path = asset_str.split(":", 2)
-            assets.append((name, version, path))
-        except ValueError:
-            print(f"Invalid asset format: {asset_str}", file=sys.stderr)
-            print("Expected: name:version:path", file=sys.stderr)
-            raise SystemExit(2)
+    input_path = Path(args.input_path) if args.input_path else None
+    try:
+        assets = _collect_assets(list(args.assets), input_path=input_path)
+        db = _create_db(
+            db_backend=args.db_backend,
+            dsn=args.dsn,
+            mongo_uri=args.mongo_uri,
+            mongo_db=args.mongo_db,
+            mongo_collection=args.mongo_collection,
+        )
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        raise SystemExit(2) from None
 
     validator = AssetValidator(
         asset_root=args.asset_root,
         cache_root=args.cache_root,
+        db=db,
         threads=args.threads,
         timeout=args.timeout,
     )

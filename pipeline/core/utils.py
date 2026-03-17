@@ -1,12 +1,11 @@
 """Utility functions for asset validation."""
 
-import os
 import hashlib
 import json
 import logging
+from datetime import datetime
 from pathlib import Path
 from typing import Optional, Union
-from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -14,11 +13,11 @@ logger = logging.getLogger(__name__)
 def hash_file(file_path: Union[str, Path], blocksize: int = 65536) -> Optional[str]:
     """
     Calculate MD5 hash of a file without loading entire file into memory.
-    
+
     Args:
         file_path: Path to the file
         blocksize: Size of chunks to read (default 64KB)
-        
+
     Returns:
         MD5 hash string or None if file cannot be read
     """
@@ -26,10 +25,10 @@ def hash_file(file_path: Union[str, Path], blocksize: int = 65536) -> Optional[s
     if not path.exists():
         logger.error(f"File not found: {path}")
         return None
-    
+
     hasher = hashlib.md5()
     try:
-        with open(path, 'rb') as f:
+        with open(path, "rb") as f:
             buf = f.read(blocksize)
             while buf:
                 hasher.update(buf)
@@ -68,9 +67,9 @@ def load_json_safe(file_path: Union[str, Path]) -> Optional[dict]:
     path = Path(file_path)
     if not path.exists():
         return None
-    
+
     try:
-        with open(path, 'r') as f:
+        with open(path) as f:
             return json.load(f)
     except Exception as e:
         logger.error(f"Failed to load JSON {path}: {e}")

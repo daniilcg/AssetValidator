@@ -76,7 +76,7 @@ class PostgresAssetDatabase(AssetDatabase):
 
     def __init__(self, dsn: str):
         try:
-            import psycopg2  # type: ignore
+            import psycopg2
         except ImportError as exc:
             raise DatabaseError(
                 "psycopg2-binary is not installed. Install with `pip install '.[postgres]'`."
@@ -148,7 +148,7 @@ class MongoAssetDatabase(AssetDatabase):
         collection_name: str = "assets",
     ):
         try:
-            from pymongo import MongoClient  # type: ignore
+            from pymongo import MongoClient
         except ImportError as exc:
             raise DatabaseError(
                 "pymongo is not installed. Install with `pip install '.[mongodb]'`."
@@ -161,15 +161,11 @@ class MongoAssetDatabase(AssetDatabase):
             raise DatabaseError(f"Failed to connect to MongoDB: {exc}") from exc
 
     def get_asset_hash(self, asset_name: str, version: str) -> Optional[str]:
-        doc = self._collection.find_one(
-            {"asset_name": asset_name, "version": version}, {"hash": 1}
-        )
+        doc = self._collection.find_one({"asset_name": asset_name, "version": version}, {"hash": 1})
         return doc.get("hash") if doc else None
 
     def get_asset_path(self, asset_name: str, version: str) -> Optional[str]:
-        doc = self._collection.find_one(
-            {"asset_name": asset_name, "version": version}, {"path": 1}
-        )
+        doc = self._collection.find_one({"asset_name": asset_name, "version": version}, {"path": 1})
         return doc.get("path") if doc else None
 
     def update_asset_hash(self, asset_name: str, version: str, hash_value: str) -> bool:
@@ -186,7 +182,5 @@ class MongoAssetDatabase(AssetDatabase):
         return bool(result.matched_count or result.upserted_id)
 
     def get_all_versions(self, asset_name: str) -> List[str]:
-        cursor = self._collection.find(
-            {"asset_name": asset_name}, {"version": 1, "_id": 0}
-        )
+        cursor = self._collection.find({"asset_name": asset_name}, {"version": 1, "_id": 0})
         return [doc["version"] for doc in cursor]

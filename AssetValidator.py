@@ -12,6 +12,5 @@ from pipeline.core.asset_validator import (  # noqa: F401
     main_cli,
 )
 
-
 if __name__ == "__main__":
     main_cli()
