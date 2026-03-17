@@ -2,23 +2,32 @@
 
 ### Development environment
 
-- Install Python 3.8+ (3.10+ рекомендовано).
-- Создайте и активируйте виртуальное окружение.
-- Установите зависимости:
+- Install Python 3.8+ (3.10+ recommended).
+- Create and activate a virtual environment.
+- Install dependencies:
 
 ```bash
-pip install -e ".[test,cli]"
+pip install -e ".[test,cli,dev]"
+pre-commit install
 ```
 
-### Тесты
+### Tests
 
 ```bash
 pytest -q
 ```
 
-### Стиль кода
+### Code style
 
-- Поддерживайте существующий стиль (black-like, 4 spaces).
-- Не добавляйте лишние комментарии, описывающие очевидный код.
-- Предпочитайте явные ошибки (raise `AssetValidationError` / `DatabaseError`) вместо немого падения.
+- Keep formatting consistent (ruff format).
+- Prefer explicit failures (`raise AssetValidationError` / `DatabaseError`) over silent fallbacks.
+- Avoid comments that restate the obvious.
+
+### Lint / type-check
+
+```bash
+ruff check .
+ruff format --check .
+mypy .
+```
 
