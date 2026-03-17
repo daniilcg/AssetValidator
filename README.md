@@ -1,5 +1,7 @@
 # Asset Validator
 
+![AssetValidator icon](assets/icon.svg)
+
 Production-grade asset validation for VFX pipelines with USD support, parallel validation, and database integration.
 
 ## Open Source
