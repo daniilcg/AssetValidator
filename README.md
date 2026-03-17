@@ -2,6 +2,12 @@
 
 Production-grade asset validation for VFX pipelines with USD support, parallel validation, and database integration.
 
+## Open Source
+
+- **GitHub**: `https://github.com/daniilcg/AssetValidator`
+- **License**: MIT
+- **Donations (PayPal)**: `https://www.paypal.me/daniilsegal90`
+
 ## Features
 
 - Parallel validation of multiple assets
