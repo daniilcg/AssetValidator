@@ -26,6 +26,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Prepare landing assets
+        run: |
+          mkdir -p landing/assets
+          cp -R assets/* landing/assets/
+
       - name: Upload landing artifact
         uses: actions/upload-pages-artifact@v3
         with:
