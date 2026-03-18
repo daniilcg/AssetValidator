@@ -34,24 +34,53 @@ Direct payment link (PayPal): [Pay with PayPal](https://www.paypal.me/daniilsega
 - Price: $0
 - Best for: personal projects, testing, basic pipeline use.
 
-### Indie
+### Personal
 
-- Price: $9-19 per month
-- Best for: freelancers or small teams.
-- Includes: prebuilt binaries, faster bug triage, feature voting.
+- Price: $10 per month
+- Yearly with 3% discount: $116.40 (instead of $120.00)
+- Best for: solo creators and freelancers.
+- Includes: prebuilt binaries, faster bug triage.
 - Suggested checkout links:
   - [Pay $10](https://www.paypal.me/daniilsegal90/10)
-  - [Pay $19](https://www.paypal.me/daniilsegal90/19)
+  - [Pay $116.40/year](https://www.paypal.me/daniilsegal90/116.40)
 
-### Studio
+### Team
 
-- Price: $99-299 per month (or custom contract)
-- Best for: production teams/studios.
+- Price: $25 per month
+- Yearly with 3% discount: $291.00 (instead of $300.00)
+- Best for: small teams.
+- Includes: team workflows, roadmap voting, faster support.
+- Suggested checkout links:
+  - [Pay $25](https://www.paypal.me/daniilsegal90/25)
+  - [Pay $291/year](https://www.paypal.me/daniilsegal90/291)
+
+### Business
+
+- Price: $99 per month
+- Yearly with 3% discount: $1,152.36 (instead of $1,188.00)
+- Best for: production teams.
 - Includes: integration support, custom rules, SLA options.
 - Suggested checkout links:
   - [Pay $99](https://www.paypal.me/daniilsegal90/99)
-  - [Pay $299](https://www.paypal.me/daniilsegal90/299)
+  - [Pay $1,152.36/year](https://www.paypal.me/daniilsegal90/1152.36)
+
+### Premium Business
+
+- Price: $199 per month
+- Yearly with 3% discount: $2,316.36 (instead of $2,388.00)
+- Best for: studios with higher SLA and integration requirements.
+- Includes: priority SLA, onboarding, advanced integration support.
+- Suggested checkout links:
+  - [Pay $199](https://www.paypal.me/daniilsegal90/199)
+  - [Pay $2,316.36/year](https://www.paypal.me/daniilsegal90/2316.36)
 - For contracts/invoices, contact: [assetvalidator@gmail.com](mailto:assetvalidator@gmail.com)
+
+### Discount Summary (Paid Plans Combined)
+
+- Monthly total: $333.00
+- Yearly total without discount: $3,996.00
+- Yearly total with 3% discount: $3,876.12
+- Total yearly savings: $119.88
 
 ## Rollout Plan
 

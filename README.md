@@ -39,20 +39,32 @@ AssetValidator remains open source. The monetization strategy focuses on conveni
 
 ### Suggested Plans
 
-| Plan | Target | Includes |
-| --- | --- | --- |
-| Free (OSS) | Individuals, evaluation | Core validator, CLI/GUI, source code, community issues |
-| Indie | Freelancers, small teams | Ready-to-run binaries, priority bug triage, roadmap voting |
-| Studio | Production teams | Integration help, custom validation profiles, SLA/support channel |
+| Plan | Target | Includes | Monthly | Yearly (3% off) | You save |
+| --- | --- | --- | ---: | ---: | ---: |
+| Free (OSS) | Individuals, evaluation | Core validator, CLI/GUI, source code, community issues | $0.00 | $0.00 | $0.00 |
+| Personal | Solo creators | Ready-to-run binaries, priority bug triage | $10.00 | $116.40 | $3.60 |
+| Team | Small teams | Team workflows, roadmap voting, faster support | $25.00 | $291.00 | $9.00 |
+| Business | Production teams | Integration help, custom validation profiles, SLA/support channel | $99.00 | $1,152.36 | $35.64 |
+| Premium Business | Studios with high load | Priority SLA, onboarding, advanced integration support | $199.00 | $2,316.36 | $71.64 |
+
+**Totals across paid plans (Personal + Team + Business + Premium Business):**
+- Monthly total: **$333.00**
+- Yearly total without discount: **$3,996.00**
+- Yearly total with 3% discount: **$3,876.12**
+- Total yearly savings: **$119.88**
 
 ### Contact and Payment
 
 - Contact email: [assetvalidator@gmail.com](mailto:assetvalidator@gmail.com)
 - PayPal (custom amount): [Pay with PayPal](https://www.paypal.me/daniilsegal90)
-- Quick support options:
-  - [Pay $10](https://www.paypal.me/daniilsegal90/10)
-  - [Pay $25](https://www.paypal.me/daniilsegal90/25)
-  - [Pay $99](https://www.paypal.me/daniilsegal90/99)
+
+### Choose Plan and Pay
+
+- **Free (OSS)**: [Start free on GitHub](https://github.com/daniilcg/AssetValidator)
+- **Personal - $10/mo**: [Pay $10](https://www.paypal.me/daniilsegal90/10) | **$116.40/year**: [Pay $116.40](https://www.paypal.me/daniilsegal90/116.40)
+- **Team - $25/mo**: [Pay $25](https://www.paypal.me/daniilsegal90/25) | **$291/year**: [Pay $291](https://www.paypal.me/daniilsegal90/291)
+- **Business - $99/mo**: [Pay $99](https://www.paypal.me/daniilsegal90/99) | **$1,152.36/year**: [Pay $1152.36](https://www.paypal.me/daniilsegal90/1152.36)
+- **Premium Business - $199/mo**: [Pay $199](https://www.paypal.me/daniilsegal90/199) | **$2,316.36/year**: [Pay $2316.36](https://www.paypal.me/daniilsegal90/2316.36)
 
 ### What Can Be Paid
 
