@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AssetValidator - VFX/CG Asset Validation Platform</title>
+  <meta name="description" content="AssetValidator is an open-source VFX/CG asset validation platform with CLI/GUI apps, USD checks, hash-based version verification, and production-ready team plans.">
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="bg-glow bg-glow-a"></div>
+  <div class="bg-glow bg-glow-b"></div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top">
+        <img src="../assets/icon.svg" alt="AssetValidator icon">
+        <span>AssetValidator</span>
+      </a>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#workflow">How It Works</a>
+        <a href="#impact">Impact</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#download">Download</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-primary" href="https://github.com/daniilcg/AssetValidator" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-copy">
+        <div class="pill">Open Source + Studio Plans</div>
+        <h1>Validate VFX/CG Assets Before They Break Production</h1>
+        <p>
+          AssetValidator is a modern validation platform for VFX/CG pipelines: file integrity checks,
+          optional USD validation, hash-based version verification, parallel batch runs, JSON reporting,
+          and clear PASS/FAIL diagnostics in both CLI and GUI.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-accent" href="https://github.com/daniilcg/AssetValidator/releases/download/v0.1.4-r3/AssetValidator.exe" target="_blank" rel="noopener">Download Windows App</a>
+          <a class="btn btn-ghost" href="https://github.com/daniilcg/AssetValidator/releases/download/v0.1.4-r3/AssetValidator" target="_blank" rel="noopener">Download Linux App</a>
+        </div>
+        <div class="hero-meta">
+          <span>Latest release: <a href="https://github.com/daniilcg/AssetValidator/releases/tag/v0.1.4-r3" target="_blank" rel="noopener">v0.1.4-r3</a></span>
+          <span>Contact: <a href="mailto:assetvalidator@gmail.com">assetvalidator@gmail.com</a></span>
+          <span class="byline">
+            Built by <strong>Daniel Segal</strong> — Pipeline TD / Technical CG Supervisor
+            <span class="icon-links" aria-label="Developer links">
+              <a class="icon-link" href="https://www.linkedin.com/in/daniilcg/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                  <path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5S1.12 1 2.5 1S4.98 2.12 4.98 3.5M.5 8.5H4.5V23.5H.5zM8.5 8.5H12.33V10.55H12.38C12.91 9.55 14.2 8.5 16.14 8.5C20.23 8.5 21 11.19 21 14.69V23.5H17V15.7C17 13.84 16.97 11.45 14.45 11.45C11.89 11.45 11.5 13.45 11.5 15.58V23.5H7.5V8.5z"/>
+                </svg>
+              </a>
+              <a class="icon-link" href="https://dsegal.tilda.ws/" target="_blank" rel="noopener" aria-label="Website">
+                <svg width="18" height="18" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                  <path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2m7.93 9h-3.12a15.6 15.6 0 0 0-1.24-5.02A8.02 8.02 0 0 1 19.93 11M12 4c.9 0 2.28 1.76 3.07 7H8.93C9.72 5.76 11.1 4 12 4M4.07 13h3.12a15.6 15.6 0 0 0 1.24 5.02A8.02 8.02 0 0 1 4.07 13m3.12-2H4.07a8.02 8.02 0 0 1 4.36-5.02A15.6 15.6 0 0 0 7.19 11m1.74 2h6.14c-.79 5.24-2.17 7-3.07 7s-2.28-1.76-3.07-7m6.64 5.02A15.6 15.6 0 0 0 16.81 13h3.12a8.02 8.02 0 0 1-4.36 5.02M16.81 11h-7.62a15.6 15.6 0 0 1 1.24-5.02A8.02 8.02 0 0 1 12 4a8.02 8.02 0 0 1 1.57.98A15.6 15.6 0 0 1 16.81 11"/>
+                </svg>
+              </a>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="scene-banner">
+          <img src="../assets/landing/scene-pipeline.svg" alt="Pipeline scene illustration">
+        </div>
+        <div class="hero-mini">
+          <div class="mini">
+            <div class="mini-title">Pipeline Ready</div>
+            <div class="mini-text">Fast, deterministic validation gates for CI and production workflows.</div>
+          </div>
+          <div class="mini">
+            <div class="mini-title">Team Visibility</div>
+            <div class="mini-text">Clear PASS/FAIL reasons to fix issues before they hit render or publish.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="promo container">
+      <div class="grid grid-2">
+        <article class="promo-card">
+          <div class="promo-media">
+            <img src="../assets/landing/scene-before-after.svg" alt="Before/after validation illustration">
+          </div>
+          <div class="promo-copy">
+            <h3>Before / After Validation</h3>
+            <p>Stop downstream failures early. Turn chaos into a clean, repeatable gate with clear PASS/FAIL reasons.</p>
+          </div>
+        </article>
+        <article class="promo-card">
+          <div class="promo-media">
+            <img src="../assets/landing/scene-studio-support.svg" alt="Studio support illustration">
+          </div>
+          <div class="promo-copy">
+            <h3>Studio Support &amp; Onboarding</h3>
+            <p>Need integrations, custom validation profiles, or an SLA channel? Studio plans help you roll out fast.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="showcase container">
+      <div class="section-head">
+        <h2>Experience the Interface</h2>
+        <p>Simple, powerful, and tuned for real asset debugging under production deadlines.</p>
+      </div>
+      <div class="showcase-frame">
+        <img src="../assets/gui-preview-v0.1.4-r3.png" alt="AssetValidator GUI screenshot">
+      </div>
+    </section>
+
+    <section id="features" class="features container">
+      <div class="section-head">
+        <h2>Key Features</h2>
+        <p>Everything needed to validate assets safely before publish or render.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>File Integrity Checks</h3>
+          <p>Automatically detect missing, unreadable, or corrupted files.</p>
+        </article>
+        <article class="card">
+          <h3>Optional USD Validation</h3>
+          <p>Run USD-layer checks and catch scene issues early.</p>
+        </article>
+        <article class="card">
+          <h3>Hash Version Verification</h3>
+          <p>Ensure assets match expected versions via checksum logic.</p>
+        </article>
+        <article class="card">
+          <h3>Parallel Batch Validation</h3>
+          <p>Validate many assets quickly using concurrent workers.</p>
+        </article>
+        <article class="card">
+          <h3>JSON Reports</h3>
+          <p>Export machine-readable validation output for CI and tooling.</p>
+        </article>
+        <article class="card">
+          <h3>CLI + GUI Workflows</h3>
+          <p>Use terminal automation or desktop UX on Windows/Linux.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="integrations" class="integrations container">
+      <div class="section-head">
+        <h2>Integrate in Minutes</h2>
+        <p>Drop AssetValidator into your existing pipeline with minimal changes.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>CLI in CI/CD</h3>
+          <p>Use validation as a quality gate before merge or release.</p>
+          <pre><code>validate-assets --threads 16 --output report.json ^
+character:v042:characters/character_v042.usd</code></pre>
+        </article>
+        <article class="card">
+          <h3>Python Publish Hook</h3>
+          <p>Validate assets right before publish to stop bad data early.</p>
+          <pre><code>from pipeline.core.asset_validator import AssetValidator
+validator = AssetValidator()
+summary = validator.validate_batch(assets)
+if summary.failed: raise RuntimeError("Publish blocked")</code></pre>
+        </article>
+        <article class="card">
+          <h3>Render Farm Preflight</h3>
+          <p>Run preflight checks automatically before dispatching heavy jobs.</p>
+          <pre><code>if summary.failed &gt; 0:
+    notify_team(summary)
+    return "blocked"
+submit_render_job()</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow" class="workflow container">
+      <div class="section-head">
+        <h2>How It Works</h2>
+        <p>Start fast. Validate confidently. Ship clean assets.</p>
+      </div>
+      <div class="timeline">
+        <div class="step"><span>1</span>Download the app or install from source.</div>
+        <div class="step"><span>2</span>Set asset/cache paths and import asset lists.</div>
+        <div class="step"><span>3</span>Run validation checks for integrity, versions, and USD.</div>
+        <div class="step"><span>4</span>Review PASS/FAIL reasons and fix issues immediately.</div>
+        <div class="step"><span>5</span>Export JSON and integrate with your pipeline/CI.</div>
+      </div>
+    </section>
+
+    <section id="webdemo" class="webdemo container">
+      <div class="section-head">
+        <h2>Web Demo (Try It in the Browser)</h2>
+        <p>
+          This is a lightweight demo for testing the workflow and output formatting.
+          It validates input structure and common issues (format, duplicates, suspicious paths).
+          For real file/USD checks, use the desktop app or CLI.
+        </p>
+      </div>
+      <div class="demo-wrap">
+        <div class="demo-panel">
+          <div class="demo-head">
+            <div class="demo-title">Assets input</div>
+            <div class="demo-hint">Format: <code>name:version:relative/path.usd</code> (one per line)</div>
+          </div>
+          <textarea id="demoInput" spellcheck="false">dragon:v042:characters/dragon/v042/dragon_v042.usd
+tree:v017:environments/tree/v017/tree_v017.usd
+badasset::missing/version.usd
+dragon:v042:characters/dragon/v042/dragon_v042.usd</textarea>
+          <div class="demo-actions">
+            <button class="btn btn-accent" id="demoValidate" type="button">Validate</button>
+            <button class="btn btn-ghost" id="demoClear" type="button">Clear</button>
+            <button class="btn btn-primary" id="demoSample" type="button">Load sample</button>
+          </div>
+          <div class="demo-note">
+            Tip: duplicates will fail, and missing fields will be flagged with reasons.
+          </div>
+        </div>
+
+        <div class="demo-panel">
+          <div class="demo-head">
+            <div class="demo-title">Validation details</div>
+            <div class="demo-hint"><span id="demoSummary">Ready.</span></div>
+          </div>
+          <div id="demoOutput" class="demo-output" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact" class="impact container">
+      <div class="section-head">
+        <h2>Why Teams Keep It in the Pipeline</h2>
+        <p>Validation becomes a cheap, repeatable safety layer that prevents expensive downstream failures.</p>
+      </div>
+      <div class="grid grid-4">
+        <article class="metric-card">
+          <div class="metric">Fewer reruns</div>
+          <p>Catch broken or mismatched assets before they hit render queues.</p>
+        </article>
+        <article class="metric-card">
+          <div class="metric">Faster debugging</div>
+          <p>Color-coded PASS/FAIL details make root cause visible immediately.</p>
+        </article>
+        <article class="metric-card">
+          <div class="metric">Stronger consistency</div>
+          <p>Same validation behavior in artist GUI, CLI automation, and CI.</p>
+        </article>
+        <article class="metric-card">
+          <div class="metric">Low adoption cost</div>
+          <p>Open-source core + ready binaries means teams can start today.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pricing" class="pricing container">
+      <div class="section-head">
+        <h2>Choose Your Plan</h2>
+        <p>From free open-source usage to studio-grade support.</p>
+      </div>
+      <div class="billing-toggle">
+        <button class="toggle-btn active" data-billing="monthly" type="button">Monthly</button>
+        <button class="toggle-btn" data-billing="yearly" type="button">Yearly <strong>(3% off)</strong></button>
+      </div>
+      <div class="grid grid-5">
+        <article class="price-card">
+          <h3>Free</h3>
+          <p class="target">Individuals / Evaluation</p>
+          <div class="price">$0</div>
+          <ul>
+            <li>Core validator</li>
+            <li>CLI + GUI apps</li>
+            <li>JSON reports</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://github.com/daniilcg/AssetValidator" target="_blank" rel="noopener">Start Free</a>
+        </article>
+
+        <article class="price-card highlighted" data-monthly="$10 / mo" data-yearly="$116.40 / yr">
+          <div class="ribbon ribbon-discount" aria-hidden="true">Save 3%</div>
+          <h3>Personal</h3>
+          <p class="target">Solo creators</p>
+          <div class="price">$10 / mo</div>
+          <ul>
+            <li>Ready-to-run binaries</li>
+            <li>Priority bug triage</li>
+            <li>Faster update support</li>
+          </ul>
+          <div class="pay-links monthly-links">
+            <a href="https://www.paypal.me/daniilsegal90/10" target="_blank" rel="noopener">Pay Monthly</a>
+          </div>
+          <div class="pay-links yearly-links hidden">
+            <a href="https://www.paypal.me/daniilsegal90/116.40" target="_blank" rel="noopener">Pay Yearly</a>
+          </div>
+        </article>
+
+        <article class="price-card" data-monthly="$25 / mo" data-yearly="$291 / yr">
+          <div class="ribbon ribbon-discount" aria-hidden="true">Save 3%</div>
+          <h3>Team</h3>
+          <p class="target">Small teams</p>
+          <div class="price">$25 / mo</div>
+          <ul>
+            <li>Team workflows</li>
+            <li>Roadmap voting</li>
+            <li>Faster support</li>
+          </ul>
+          <div class="pay-links monthly-links">
+            <a href="https://www.paypal.me/daniilsegal90/25" target="_blank" rel="noopener">Pay Monthly</a>
+          </div>
+          <div class="pay-links yearly-links hidden">
+            <a href="https://www.paypal.me/daniilsegal90/291" target="_blank" rel="noopener">Pay Yearly</a>
+          </div>
+        </article>
+
+        <article class="price-card" data-monthly="$99 / mo" data-yearly="$1,152.36 / yr">
+          <div class="ribbon ribbon-discount" aria-hidden="true">Save 3%</div>
+          <h3>Business</h3>
+          <p class="target">Production teams</p>
+          <div class="price">$99 / mo</div>
+          <ul>
+            <li>Integration support</li>
+            <li>Custom validation profiles</li>
+            <li>SLA support channel</li>
+          </ul>
+          <div class="pay-links monthly-links">
+            <a href="https://www.paypal.me/daniilsegal90/99" target="_blank" rel="noopener">Pay Monthly</a>
+          </div>
+          <div class="pay-links yearly-links hidden">
+            <a href="https://www.paypal.me/daniilsegal90/1152.36" target="_blank" rel="noopener">Pay Yearly</a>
+          </div>
+        </article>
+
+        <article class="price-card premium" data-monthly="$199 / mo" data-yearly="$2,316.36 / yr">
+          <div class="ribbon ribbon-premium" aria-hidden="true">Premium</div>
+          <div class="ribbon ribbon-discount" aria-hidden="true">Save 3%</div>
+          <h3>Premium</h3>
+          <p class="target">Enterprise studios</p>
+          <div class="price">$199 / mo</div>
+          <ul>
+            <li>Priority SLA</li>
+            <li>Onboarding sessions</li>
+            <li>Advanced integrations</li>
+          </ul>
+          <div class="pay-links monthly-links">
+            <a href="https://www.paypal.me/daniilsegal90/199" target="_blank" rel="noopener">Pay Monthly</a>
+          </div>
+          <div class="pay-links yearly-links hidden">
+            <a href="https://www.paypal.me/daniilsegal90/2316.36" target="_blank" rel="noopener">Pay Yearly</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="download" class="download container">
+      <div class="section-head">
+        <h2>Download Latest Build</h2>
+        <p>Ready-to-run binaries for both major desktop platforms.</p>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="dl-head">
+            <div class="file-badge file-badge-win" aria-hidden="true">
+              <img src="../assets/icon.svg" alt="">
+            </div>
+            <div>
+          <h3>Windows (.exe)</h3>
+          <p>Instant download of the desktop executable.</p>
+            </div>
+          </div>
+          <a class="btn btn-accent" href="https://github.com/daniilcg/AssetValidator/releases/download/v0.1.4-r3/AssetValidator.exe" target="_blank" rel="noopener">Download Windows</a>
+        </article>
+        <article class="card">
+          <div class="dl-head">
+            <div class="file-badge file-badge-linux" aria-hidden="true">
+              <img src="../assets/icon.svg" alt="">
+            </div>
+            <div>
+          <h3>Linux (binary)</h3>
+          <p>Standalone Linux build for quick launch.</p>
+            </div>
+          </div>
+          <a class="btn btn-accent" href="https://github.com/daniilcg/AssetValidator/releases/download/v0.1.4-r3/AssetValidator" target="_blank" rel="noopener">Download Linux</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact container">
+      <div class="section-head">
+        <h2>Contact and Support</h2>
+        <p>Need onboarding, custom validation rules, or studio integration?</p>
+      </div>
+      <div class="contact-wrap">
+        <a class="btn btn-primary" href="mailto:assetvalidator@gmail.com">Email Us</a>
+        <a class="btn btn-ghost" href="https://www.paypal.me/daniilsegal90" target="_blank" rel="noopener">Support via PayPal</a>
+      </div>
+      <p class="contact-meta">
+        Email: <a href="mailto:assetvalidator@gmail.com">assetvalidator@gmail.com</a>
+      </p>
+      <p class="contact-meta">
+        Need enterprise onboarding or custom integration pack? Contact us for a tailored rollout plan.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <div class="brand small">
+        <img src="../assets/icon.svg" alt="AssetValidator icon">
+        <span>AssetValidator</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/daniilcg/AssetValidator" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/daniilcg/AssetValidator/releases" target="_blank" rel="noopener">Releases</a>
+        <a href="mailto:assetvalidator@gmail.com">Contact</a>
+        <span class="footer-dev">
+          <span>Developer: <strong>Daniel Segal</strong></span>
+          <span class="icon-links" aria-label="Developer links">
+            <a class="icon-link" href="https://www.linkedin.com/in/daniilcg/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                <path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5S1.12 1 2.5 1S4.98 2.12 4.98 3.5M.5 8.5H4.5V23.5H.5zM8.5 8.5H12.33V10.55H12.38C12.91 9.55 14.2 8.5 16.14 8.5C20.23 8.5 21 11.19 21 14.69V23.5H17V15.7C17 13.84 16.97 11.45 14.45 11.45C11.89 11.45 11.5 13.45 11.5 15.58V23.5H7.5V8.5z"/>
+              </svg>
+            </a>
+            <a class="icon-link" href="https://dsegal.tilda.ws/" target="_blank" rel="noopener" aria-label="Website">
+              <svg width="18" height="18" viewBox="0 0 24 24" role="img" aria-hidden="true">
+                <path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2m7.93 9h-3.12a15.6 15.6 0 0 0-1.24-5.02A8.02 8.02 0 0 1 19.93 11M12 4c.9 0 2.28 1.76 3.07 7H8.93C9.72 5.76 11.1 4 12 4M4.07 13h3.12a15.6 15.6 0 0 0 1.24 5.02A8.02 8.02 0 0 1 4.07 13m3.12-2H4.07a8.02 8.02 0 0 1 4.36-5.02A15.6 15.6 0 0 0 7.19 11m1.74 2h6.14c-.79 5.24-2.17 7-3.07 7s-2.28-1.76-3.07-7m6.64 5.02A15.6 15.6 0 0 0 16.81 13h3.12a8.02 8.02 0 0 1-4.36 5.02M16.81 11h-7.62a15.6 15.6 0 0 1 1.24-5.02A8.02 8.02 0 0 1 12 4a8.02 8.02 0 0 1 1.57.98A15.6 15.6 0 0 1 16.81 11"/>
+              </svg>
+            </a>
+          </span>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

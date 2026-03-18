@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070A12"/>
+      <stop offset="1" stop-color="#070B12"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="22%" cy="25%" r="60%">
+      <stop offset="0" stop-color="#34D4FF" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#34D4FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="78%" cy="70%" r="65%">
+      <stop offset="0" stop-color="#7CFF4F" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#7CFF4F" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#22304A" stroke-opacity="0.18" stroke-width="1"/>
+    </pattern>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#34D4FF" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#7CFF4F" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glowA)"/>
+  <rect width="1600" height="900" fill="url(#glowB)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+
+  <!-- clean pipeline line -->
+  <g filter="url(#softGlow)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M260 560 C 470 390, 620 390, 830 560 S 1160 730, 1420 560"
+      stroke="url(#line)" stroke-width="10" opacity="0.9"/>
+    <path d="M260 560 C 470 390, 620 390, 830 560 S 1160 730, 1420 560"
+      stroke="#0D1220" stroke-width="4" opacity="0.9"/>
+  </g>
+
+  <!-- minimal nodes -->
+  <g filter="url(#softGlow)">
+    <g transform="translate(260 560)">
+      <circle r="18" fill="#34D4FF" opacity="0.9"/>
+      <circle r="46" fill="#34D4FF" opacity="0.08"/>
+    </g>
+    <g transform="translate(830 560)">
+      <circle r="18" fill="#34D4FF" opacity="0.85"/>
+      <circle r="46" fill="#34D4FF" opacity="0.08"/>
+      <circle r="9" fill="#0B0F18" opacity="0.85"/>
+    </g>
+    <g transform="translate(1420 560)">
+      <circle r="18" fill="#7CFF4F" opacity="0.88"/>
+      <circle r="46" fill="#7CFF4F" opacity="0.07"/>
+    </g>
+  </g>
+
+  <!-- central check motif (validator) -->
+  <g transform="translate(830 380)" filter="url(#softGlow)" opacity="0.95">
+    <circle cx="0" cy="0" r="46" fill="#0D1220" stroke="#7CFF4F" stroke-opacity="0.55" stroke-width="2"/>
+    <path d="M-18 2 L-6 14 L22 -18" fill="none" stroke="#7CFF4F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- subtle badge bars (no text) -->
+  <g opacity="0.7">
+    <rect x="170" y="210" width="520" height="10" rx="5" fill="#99A3BD" opacity="0.18"/>
+    <rect x="170" y="232" width="340" height="10" rx="5" fill="#34D4FF" opacity="0.2"/>
+    <rect x="980" y="742" width="520" height="10" rx="5" fill="#99A3BD" opacity="0.16"/>
+    <rect x="1160" y="764" width="340" height="10" rx="5" fill="#7CFF4F" opacity="0.18"/>
+  </g>
+
+  <!-- vignette -->
+  <rect x="0" y="0" width="1600" height="900" fill="none" stroke="#000" stroke-opacity="0.35" stroke-width="130"/>
+</svg>

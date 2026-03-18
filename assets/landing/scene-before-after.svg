@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070A12"/>
+      <stop offset="1" stop-color="#070B12"/>
+    </linearGradient>
+    <radialGradient id="glowL" cx="25%" cy="55%" r="60%">
+      <stop offset="0" stop-color="#FF2F5B" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#FF2F5B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowR" cx="75%" cy="45%" r="60%">
+      <stop offset="0" stop-color="#7CFF4F" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#7CFF4F" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="70" height="70" patternUnits="userSpaceOnUse">
+      <path d="M70 0H0V70" fill="none" stroke="#22304A" stroke-opacity="0.16" stroke-width="1"/>
+    </pattern>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="lineL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF2F5B" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FF2F5B" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="lineR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#34D4FF" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#7CFF4F" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glowL)"/>
+  <rect width="1600" height="900" fill="url(#glowR)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+
+  <!-- ultra-clean split marker -->
+  <g filter="url(#softGlow)" opacity="0.75">
+    <path d="M800 160 L800 740" stroke="#34D4FF" stroke-opacity="0.18" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- left (before): broken dashed flow -->
+  <g filter="url(#softGlow)" fill="none" stroke-linecap="round">
+    <path d="M170 470 C 320 360, 450 360, 600 470" stroke="url(#lineL)" stroke-width="9" stroke-dasharray="14 14"/>
+    <circle cx="170" cy="470" r="16" fill="#FF2F5B" opacity="0.72"/>
+    <circle cx="600" cy="470" r="16" fill="#FF2F5B" opacity="0.72"/>
+  </g>
+  <g filter="url(#softGlow)" opacity="0.95" transform="translate(610 355)">
+    <circle cx="0" cy="0" r="34" fill="#0D1220" stroke="#FF2F5B" stroke-opacity="0.55" stroke-width="2"/>
+    <path d="M-12 12 L12 -12" stroke="#FF2F5B" stroke-width="6" stroke-linecap="round"/>
+    <path d="M-12 -12 L12 12" stroke="#FF2F5B" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- right (after): stable flow + check -->
+  <g filter="url(#softGlow)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1000 470 C 1140 360, 1280 360, 1420 470" stroke="url(#lineR)" stroke-width="10"/>
+    <circle cx="1000" cy="470" r="16" fill="#34D4FF" opacity="0.75"/>
+    <circle cx="1420" cy="470" r="16" fill="#7CFF4F" opacity="0.78"/>
+  </g>
+  <g filter="url(#softGlow)" opacity="0.95" transform="translate(1410 355)">
+    <circle cx="0" cy="0" r="34" fill="#0D1220" stroke="#7CFF4F" stroke-opacity="0.45" stroke-width="2"/>
+    <path d="M-14 0 L-4 10 L16 -12" fill="none" stroke="#7CFF4F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- minimal accent bars -->
+  <g opacity="0.55">
+    <rect x="120" y="260" width="360" height="10" rx="5" fill="#99A3BD" opacity="0.16"/>
+    <rect x="120" y="282" width="220" height="10" rx="5" fill="#FF2F5B" opacity="0.18"/>
+    <rect x="1020" y="620" width="380" height="10" rx="5" fill="#99A3BD" opacity="0.14"/>
+    <rect x="1220" y="642" width="230" height="10" rx="5" fill="#7CFF4F" opacity="0.16"/>
+  </g>
+
+  <rect x="0" y="0" width="1600" height="900" fill="none" stroke="#000" stroke-opacity="0.35" stroke-width="130"/>
+</svg>
