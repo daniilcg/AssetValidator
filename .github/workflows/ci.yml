@@ -67,8 +67,6 @@ jobs:
 
   build:
     if: startsWith(github.ref, 'refs/tags/v')
-    permissions:
-      contents: write
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -105,9 +103,24 @@ jobs:
           name: AssetValidator-${{ matrix.os }}
           path: dist/*
 
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v5
+        with:
+          pattern: AssetValidator-*
+          path: release-assets
+
       - name: Create GitHub Release
-        if: matrix.os == 'ubuntu-latest'
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/*
+          files: |
+            release-assets/**/AssetValidator
+            release-assets/**/AssetValidator.exe
 
