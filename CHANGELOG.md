@@ -1,5 +1,9 @@
 ## Changelog
 
+### v0.1.3
+
+- Fix GitHub Actions release permissions for tag builds.
+
 ### v0.1.2
 
 - Add optional GUI app (PySide6) and `asset-validator-gui` entrypoint.
