@@ -30,7 +30,45 @@ Simple workflow:
 
 - **GitHub**: `https://github.com/daniilcg/AssetValidator`
 - **License**: MIT
-- **Donations (PayPal)**: `https://www.paypal.me/daniilsegal90`
+- **Email (business/support)**: [assetvalidator@gmail.com](mailto:assetvalidator@gmail.com)
+- **Donations (PayPal)**: [paypal.me/daniilsegal90](https://www.paypal.me/daniilsegal90)
+
+## Monetization and Support
+
+AssetValidator remains open source. The monetization strategy focuses on convenience, integrations, and support for teams.
+
+### Suggested Plans
+
+| Plan | Target | Includes |
+| --- | --- | --- |
+| Free (OSS) | Individuals, evaluation | Core validator, CLI/GUI, source code, community issues |
+| Indie | Freelancers, small teams | Ready-to-run binaries, priority bug triage, roadmap voting |
+| Studio | Production teams | Integration help, custom validation profiles, SLA/support channel |
+
+### Contact and Payment
+
+- Contact email: [assetvalidator@gmail.com](mailto:assetvalidator@gmail.com)
+- PayPal (custom amount): [Pay with PayPal](https://www.paypal.me/daniilsegal90)
+- Quick support options:
+  - [Pay $10](https://www.paypal.me/daniilsegal90/10)
+  - [Pay $25](https://www.paypal.me/daniilsegal90/25)
+  - [Pay $99](https://www.paypal.me/daniilsegal90/99)
+
+### What Can Be Paid
+
+- **Convenience**: prebuilt binaries, update notifications, setup guides.
+- **Team features**: validation profiles, report history, dashboard/export templates.
+- **Integrations**: ShotGrid/FTrack/Slack/Telegram/Jenkins/GitHub Actions presets.
+- **Support**: onboarding sessions, pipeline audits, custom rule development.
+
+### Quick Start for Monetization
+
+1. Publish pricing and plan comparison.
+2. Keep core engine open and stable.
+3. Offer paid support/integration as first revenue stream.
+4. Expand to pro add-ons based on user demand.
+
+See `MONETIZATION.md` for a practical rollout roadmap.
 
 ## Features
 
