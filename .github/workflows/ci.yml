@@ -28,24 +28,37 @@ jobs:
 
       - name: Install dependencies
         run: |
+          set -euxo pipefail
           python -m pip install --upgrade pip
           pip install -e ".[test,dev]"
 
       - name: Run tests
         run: |
-          pytest -q
+          set -euxo pipefail
+          mkdir -p .ci-logs
+          pytest -vv --showlocals 2>&1 | tee .ci-logs/pytest.txt
 
       - name: Ruff (lint)
         run: |
-          ruff check .
+          set -euxo pipefail
+          ruff check . 2>&1 | tee .ci-logs/ruff_check.txt
 
       - name: Ruff (format)
         run: |
-          ruff format --check .
+          set -euxo pipefail
+          ruff format --check . 2>&1 | tee .ci-logs/ruff_format.txt
 
       - name: Mypy
         run: |
-          mypy .
+          set -euxo pipefail
+          mypy . 2>&1 | tee .ci-logs/mypy.txt
+
+      - name: Upload test logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-logs-tests
+          path: .ci-logs/*
 
   build:
     if: startsWith(github.ref, 'refs/tags/v')
