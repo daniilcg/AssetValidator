@@ -1,5 +1,11 @@
 ## Changelog
 
+### v0.1.4
+
+- Stabilize CI pipeline and artifact uploads.
+- Fix GUI files formatting issues that failed `ruff format --check`.
+- Keep release path clean for Windows/Linux build artifacts on tags.
+
 ### v0.1.3
 
 - Fix GitHub Actions release permissions for tag builds.
