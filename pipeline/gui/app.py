@@ -6,14 +6,18 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Optional, Tuple
 
-from PySide6.QtCore import QObject, QRunnable, QThreadPool, Signal, Slot
-from PySide6.QtGui import QIcon
+from PySide6.QtCore import QObject, QRunnable, Qt, QThreadPool, Signal, Slot
+from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWidgets import (
+    QAbstractItemView,
     QApplication,
+    QComboBox,
     QFileDialog,
+    QFrame,
     QGridLayout,
     QGroupBox,
     QHBoxLayout,
+    QHeaderView,
     QLabel,
     QLineEdit,
     QMainWindow,
@@ -35,10 +39,114 @@ from pipeline.core.db_interface import (
     PostgresAssetDatabase,
 )
 
+STYLE_SHEET = """
+QMainWindow {
+    background-color: #272822;
+}
+QWidget {
+    background: transparent;
+    color: #F8F8F2;
+    font-size: 12px;
+}
+QFrame#HeaderFrame {
+    border: 1px solid #3E3D32;
+    border-radius: 10px;
+    background: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #31322C, stop:1 #262822
+    );
+}
+QGroupBox {
+    border: 1px solid #3E3D32;
+    border-radius: 8px;
+    margin-top: 12px;
+    padding: 8px;
+    background-color: #2D2E27;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 6px;
+    color: #A6E22E;
+    font-weight: 600;
+}
+QLineEdit, QComboBox, QTextEdit, QTableWidget {
+    background-color: #1F201B;
+    border: 1px solid #49483E;
+    border-radius: 6px;
+    padding: 6px;
+    color: #F8F8F2;
+    selection-background-color: #66D9EF;
+    selection-color: #1B1D1A;
+}
+QComboBox::drop-down {
+    border: none;
+    width: 20px;
+}
+QComboBox QAbstractItemView {
+    background-color: #1F201B;
+    border: 1px solid #49483E;
+    color: #F8F8F2;
+    selection-background-color: #66D9EF;
+    selection-color: #1B1D1A;
+}
+QTableWidget {
+    gridline-color: #3E3D32;
+}
+QHeaderView::section {
+    background-color: #34352E;
+    color: #FD971F;
+    border: 0;
+    border-right: 1px solid #3E3D32;
+    padding: 6px;
+    font-weight: 600;
+}
+QPushButton {
+    border: 1px solid #5A594A;
+    border-radius: 8px;
+    background-color: #3D3E36;
+    color: #F8F8F2;
+    padding: 7px 12px;
+}
+QPushButton:hover {
+    background-color: #4A4B42;
+}
+QPushButton:disabled {
+    color: #8A8A80;
+    border-color: #4A4B42;
+    background-color: #32332C;
+}
+QPushButton#PrimaryButton {
+    border-color: #6AAE27;
+    background: qlineargradient(
+        x1:0, y1:0, x2:0, y2:1,
+        stop:0 #A6E22E, stop:1 #7DB221
+    );
+    color: #1B1D1A;
+    font-weight: 700;
+}
+QPushButton#PrimaryButton:hover {
+    background: qlineargradient(
+        x1:0, y1:0, x2:0, y2:1,
+        stop:0 #B4F037, stop:1 #88C526
+    );
+}
+QStatusBar {
+    background-color: #1F201B;
+    color: #E6DB74;
+    border-top: 1px solid #3E3D32;
+}
+"""
+
+
+def _resource_root() -> Path:
+    if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+        return Path(sys._MEIPASS)
+    return Path(__file__).resolve().parents[2]
+
 
 def _project_icon_path() -> Path:
-    # Try repo-local icon first (works in editable installs).
-    return (Path(__file__).resolve().parents[2] / "assets" / "icon.svg").resolve()
+    return (_resource_root() / "assets" / "icon.svg").resolve()
 
 
 def _parse_asset_triplet(asset_str: str) -> Tuple[str, str, str]:
@@ -164,7 +272,8 @@ class MainWindow(QMainWindow):
         self.threads = QLineEdit("16")
         self.timeout = QLineEdit("300")
 
-        self.db_backend = QLineEdit("mock")  # simple for now; can be dropdown later
+        self.db_backend = QComboBox()
+        self.db_backend.addItems(["mock", "postgres", "mongo"])
         self.postgres_dsn = QLineEdit("")
         self.mongo_uri = QLineEdit("")
         self.mongo_db = QLineEdit("asset_db")
@@ -172,7 +281,12 @@ class MainWindow(QMainWindow):
 
         self.table = QTableWidget(0, 3)
         self.table.setHorizontalHeaderLabels(["Asset", "Version", "Relative path"])
-        self.table.horizontalHeader().setStretchLastSection(True)
+        header = self.table.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(2, QHeaderView.Stretch)
+        self.table.setAlternatingRowColors(True)
+        self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
 
         self.log = QTextEdit()
         self.log.setReadOnly(True)
@@ -182,13 +296,16 @@ class MainWindow(QMainWindow):
         self.btn_import = QPushButton("Import .txt/.json")
         self.btn_clear = QPushButton("Clear list")
         self.btn_validate = QPushButton("Validate")
+        self.btn_validate.setObjectName("PrimaryButton")
 
         self.btn_add.clicked.connect(self._add_asset_row)
         self.btn_import.clicked.connect(self._import_assets)
         self.btn_clear.clicked.connect(self._clear_assets)
         self.btn_validate.clicked.connect(self._start_validation)
+        self.db_backend.currentTextChanged.connect(self._on_db_backend_changed)
 
         self._build_layout()
+        self._on_db_backend_changed(self.db_backend.currentText())
 
     def _build_layout(self) -> None:
         root = QWidget()
@@ -196,6 +313,32 @@ class MainWindow(QMainWindow):
 
         left = QVBoxLayout()
         right = QVBoxLayout()
+        root_layout = QVBoxLayout(root)
+
+        header = QFrame()
+        header.setObjectName("HeaderFrame")
+        header_layout = QHBoxLayout(header)
+        header_layout.setContentsMargins(14, 12, 14, 12)
+
+        icon = QLabel()
+        icon.setFixedSize(44, 44)
+        icon_path = _project_icon_path()
+        if icon_path.exists():
+            pixmap = QPixmap(str(icon_path)).scaled(
+                44, 44, Qt.KeepAspectRatio, Qt.SmoothTransformation
+            )
+            icon.setPixmap(pixmap)
+        header_layout.addWidget(icon)
+
+        title_box = QVBoxLayout()
+        title = QLabel("AssetValidator")
+        title.setStyleSheet("font-size: 18px; font-weight: 700; color: #F8F8F2;")
+        subtitle = QLabel("Clean validation for VFX/CG assets")
+        subtitle.setStyleSheet("font-size: 12px; color: #A6E22E;")
+        title_box.addWidget(title)
+        title_box.addWidget(subtitle)
+        header_layout.addLayout(title_box)
+        header_layout.addStretch(1)
 
         cfg = QGroupBox("Configuration")
         cfg_layout = QGridLayout(cfg)
@@ -237,9 +380,11 @@ class MainWindow(QMainWindow):
         right.addWidget(QLabel("Output"))
         right.addWidget(self.log, 1)
 
-        main = QHBoxLayout(root)
+        main = QHBoxLayout()
         main.addLayout(left, 3)
         main.addLayout(right, 2)
+        root_layout.addWidget(header)
+        root_layout.addLayout(main, 1)
 
     @Slot()
     def _add_asset_row(self) -> None:
@@ -296,7 +441,7 @@ class MainWindow(QMainWindow):
             cache_root=Path(self.cache_root.text()).expanduser(),
             threads=int(self.threads.text() or "16"),
             timeout=int(self.timeout.text() or "300"),
-            db_backend=self.db_backend.text().strip() or "mock",
+            db_backend=self.db_backend.currentText().strip() or "mock",
             postgres_dsn=self.postgres_dsn.text().strip(),
             mongo_uri=self.mongo_uri.text().strip(),
             mongo_db=self.mongo_db.text().strip() or "asset_db",
@@ -357,9 +502,21 @@ class MainWindow(QMainWindow):
     def _append_log(self, text: str) -> None:
         self.log.append(text)
 
+    @Slot(str)
+    def _on_db_backend_changed(self, backend: str) -> None:
+        b = backend.lower()
+        use_pg = b == "postgres"
+        use_mongo = b == "mongo"
+
+        self.postgres_dsn.setEnabled(use_pg)
+        self.mongo_uri.setEnabled(use_mongo)
+        self.mongo_db.setEnabled(use_mongo)
+        self.mongo_collection.setEnabled(use_mongo)
+
 
 def main() -> None:
     app = QApplication(sys.argv)
+    app.setStyleSheet(STYLE_SHEET)
     w = MainWindow()
     w.show()
     raise SystemExit(app.exec())
