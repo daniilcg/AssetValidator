@@ -29,6 +29,7 @@ jobs:
       - name: Prepare CI log directory
         run: |
           mkdir -p .ci-logs
+          echo "ci-logs initialized" > .ci-logs/_heartbeat.txt
 
       - name: Install dependencies
         run: |
@@ -58,7 +59,7 @@ jobs:
 
       - name: Upload test logs
         if: always()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ci-logs-tests
           path: .ci-logs/**
@@ -93,7 +94,7 @@ jobs:
           pyinstaller --noconfirm --onefile --windowed --name AssetValidator pipeline/gui/app.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: AssetValidator-${{ matrix.os }}
           path: dist/*
