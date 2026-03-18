@@ -6,17 +6,17 @@ Production-grade asset validation for VFX pipelines with USD support, parallel v
 
 ## Latest Release (Recommended)
 
-**Use the newest release first: `v0.1.4`**  
-It includes the modern GUI, dark Sublime-style theme, and ready-to-run builds for Windows and Linux.
+**Use the newest release first: `v0.1.4-r3`**  
+This release includes the modern GUI, dark Sublime-style theme, and color-coded validation details (green `PASS`, red `FAIL` with error reasons).
 
-- Download from Releases: `https://github.com/daniilcg/AssetValidator/releases/latest`
-- Windows: packaged `.exe`
-- Linux: packaged standalone binary
-- You can still access all previous versions in the same Releases page.
+- Release page: [v0.1.4-r3](https://github.com/daniilcg/AssetValidator/releases/tag/v0.1.4-r3)
+- Windows app (`.exe`): [Download AssetValidator.exe](https://github.com/daniilcg/AssetValidator/releases/download/v0.1.4-r3/AssetValidator.exe)
+- Linux app (standalone binary): [Download AssetValidator](https://github.com/daniilcg/AssetValidator/releases/download/v0.1.4-r3/AssetValidator)
+- All previous versions remain available on the [Releases](https://github.com/daniilcg/AssetValidator/releases) page.
 
 ### GUI Preview
 
-![AssetValidator GUI preview](assets/gui-preview.svg)
+![AssetValidator GUI preview](assets/gui-preview-v0.1.4-r3.png)
 
 Simple workflow:
 
