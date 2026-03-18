@@ -1,5 +1,16 @@
 ## Changelog
 
+### v0.1.4-r3
+
+- Add color-coded validation details in GUI (`PASS` in green, `FAIL` in red with reasons).
+- Replace README GUI preview with real app screenshot (`assets/gui-preview-v0.1.4-r3.png`).
+- Add direct clickable download links for Windows and Linux release binaries.
+
+### v0.1.4-r2
+
+- Publish both Windows (`AssetValidator.exe`) and Linux (`AssetValidator`) binaries in GitHub Releases.
+- Split release publishing into a dedicated workflow job that downloads build artifacts from both runners.
+
 ### v0.1.4
 
 - Stabilize CI pipeline and artifact uploads.
