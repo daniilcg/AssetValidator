@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import html
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -291,6 +292,9 @@ class MainWindow(QMainWindow):
         self.log = QTextEdit()
         self.log.setReadOnly(True)
         self.log.setPlaceholderText("Logs / status…")
+        self.detail_log = QTextEdit()
+        self.detail_log.setReadOnly(True)
+        self.detail_log.setPlaceholderText("Detailed validation log (PASS/FAIL reasons)…")
 
         self.btn_add = QPushButton("Add asset")
         self.btn_import = QPushButton("Import .txt/.json")
@@ -379,6 +383,8 @@ class MainWindow(QMainWindow):
 
         right.addWidget(QLabel("Output"))
         right.addWidget(self.log, 1)
+        right.addWidget(QLabel("Validation details"))
+        right.addWidget(self.detail_log, 2)
 
         main = QHBoxLayout()
         main.addLayout(left, 3)
@@ -463,6 +469,8 @@ class MainWindow(QMainWindow):
 
         self.btn_validate.setEnabled(False)
         self._append_log(f"Starting validation: {len(assets)} assets…")
+        self.detail_log.clear()
+        self._append_detail_log("Starting validation run…", "#E6DB74")
 
         worker = ValidateWorker(config, assets)
         worker.signals.started.connect(self._on_started)
@@ -480,6 +488,17 @@ class MainWindow(QMainWindow):
         r = res  # ValidationResult
         status = "OK" if getattr(r, "is_valid", False) else "FAIL"
         self.statusBar().showMessage(f"{done}/{total} — {status} {getattr(r, 'asset_name', '')}")
+        if isinstance(r, ValidationResult):
+            asset_ref = f"{r.asset_name} {r.version}"
+            if r.is_valid:
+                self._append_detail_log(f"PASS {asset_ref}", "#A6E22E")
+            else:
+                self._append_detail_log(f"FAIL {asset_ref}", "#F92672")
+                if r.errors:
+                    for err in r.errors:
+                        self._append_detail_log(f"  - {err}", "#FF6F91")
+                else:
+                    self._append_detail_log("  - Unknown validation error", "#FF6F91")
 
     @Slot(object)
     def _on_finished(self, summary: object) -> None:
@@ -489,8 +508,13 @@ class MainWindow(QMainWindow):
             self._append_log(
                 f"Done. total={summary.total}, passed={summary.passed}, failed={summary.failed}"
             )
+            self._append_detail_log(
+                f"Done. total={summary.total}, passed={summary.passed}, failed={summary.failed}",
+                "#E6DB74",
+            )
         else:
             self._append_log("Done.")
+            self._append_detail_log("Done.", "#E6DB74")
 
     @Slot(str)
     def _on_failed(self, message: str) -> None:
@@ -498,9 +522,14 @@ class MainWindow(QMainWindow):
         self.statusBar().clearMessage()
         QMessageBox.critical(self, "Validation failed", message)
         self._append_log(f"ERROR: {message}")
+        self._append_detail_log(f"ERROR: {message}", "#F92672")
 
     def _append_log(self, text: str) -> None:
         self.log.append(text)
+
+    def _append_detail_log(self, text: str, color: str) -> None:
+        safe_text = html.escape(text)
+        self.detail_log.append(f'<span style="color:{color}">{safe_text}</span>')
 
     @Slot(str)
     def _on_db_backend_changed(self, backend: str) -> None:
