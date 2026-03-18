@@ -31,9 +31,13 @@ postgres = [
 mongodb = [
   "pymongo>=4.0.0",
 ]
+gui = [
+  "PySide6>=6.6.0",
+]
 
 [project.scripts]
 validate-assets = "pipeline.core.asset_validator:main_cli"
+asset-validator-gui = "pipeline.gui.app:main"
 
 [tool.setuptools]
 py-modules = ["AssetValidator"]

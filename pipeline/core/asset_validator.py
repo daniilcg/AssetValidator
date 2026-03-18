@@ -15,7 +15,7 @@ from concurrent.futures import ThreadPoolExecutor, TimeoutError, as_completed
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import List, Optional, Tuple, Union
+from typing import Callable, List, Optional, Tuple, Union
 
 from pipeline.config.settings import Settings
 from pipeline.core.db_interface import (
@@ -319,7 +319,10 @@ class AssetValidator:
         return result
 
     def validate_batch(
-        self, assets: List[Tuple[str, str, str]], raise_on_failure: bool = False
+        self,
+        assets: List[Tuple[str, str, str]],
+        raise_on_failure: bool = False,
+        progress_callback: Optional[Callable[[int, int, ValidationResult], None]] = None,
     ) -> ValidationSummary:
         import time
 
@@ -344,6 +347,8 @@ class AssetValidator:
                 try:
                     result = future.result(timeout=self.timeout)
                     summary.results.append(result)
+                    if progress_callback:
+                        progress_callback(len(summary.results), summary.total, result)
 
                     if result.is_valid:
                         summary.passed += 1
@@ -365,30 +370,32 @@ class AssetValidator:
                     summary.failed += 1
                     summary.corrupted += 1
                     error_msg = f"Validation timeout after {self.timeout}s"
-                    summary.results.append(
-                        ValidationResult(
-                            asset_name=asset_name,
-                            version=version,
-                            path=self.asset_root / path,
-                            is_valid=False,
-                            errors=[error_msg],
-                        )
+                    timeout_result = ValidationResult(
+                        asset_name=asset_name,
+                        version=version,
+                        path=self.asset_root / path,
+                        is_valid=False,
+                        errors=[error_msg],
                     )
+                    summary.results.append(timeout_result)
+                    if progress_callback:
+                        progress_callback(len(summary.results), summary.total, timeout_result)
                     self.logger.error(f"Timeout: {asset_name} {version}")
 
                 except Exception as e:
                     summary.failed += 1
                     summary.corrupted += 1
                     error_msg = f"Validation error: {e}"
-                    summary.results.append(
-                        ValidationResult(
-                            asset_name=asset_name,
-                            version=version,
-                            path=self.asset_root / path,
-                            is_valid=False,
-                            errors=[error_msg],
-                        )
+                    err_result = ValidationResult(
+                        asset_name=asset_name,
+                        version=version,
+                        path=self.asset_root / path,
+                        is_valid=False,
+                        errors=[error_msg],
                     )
+                    summary.results.append(err_result)
+                    if progress_callback:
+                        progress_callback(len(summary.results), summary.total, err_result)
                     self.logger.error(f"Error: {asset_name} {version} - {e}")
 
         summary.total_duration_ms = (time.time() - start_time) * 1000

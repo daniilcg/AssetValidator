@@ -18,6 +18,7 @@ Production-grade asset validation for VFX pipelines with USD support, parallel v
 - Caching for performance
 - Database integration (PostgreSQL/MongoDB ready)
 - CLI interface
+- Simple GUI (optional)
 - Full test suite
 
 ## Installation
@@ -32,6 +33,9 @@ pip install -e .
 
 # With CLI extras
 pip install -e ".[cli]"
+
+# With GUI
+pip install -e ".[gui]"
 
 # With DB extras (choose what you need)
 pip install -e ".[postgres]"
