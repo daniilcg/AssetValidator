@@ -1,5 +1,10 @@
 ## Changelog
 
+### v0.1.2
+
+- Add optional GUI app (PySide6) and `asset-validator-gui` entrypoint.
+- Build release artifacts on tags (Windows exe + Linux binary via PyInstaller).
+
 ### v0.1.1
 
 - Improve developer experience: ruff/mypy/pre-commit and CI checks.
