@@ -26,8 +26,11 @@ def _env_int(name: str, default: int) -> int:
 
 def _default_base_dir() -> Path:
     # Prefer project-local defaults (works on Windows/Linux/macOS without permissions issues).
-    # Users can override everything via environment variables.
-    return Path(os.getenv("ASSETVALIDATOR_BASE_DIR", Path.cwd())).resolve()
+    # ASSETVALIDATOR_BASE_DIR wins; else PROJECT_PATH (no hardcoded D:/Work/...); else cwd.
+    raw = os.getenv("ASSETVALIDATOR_BASE_DIR") or os.getenv("PROJECT_PATH")
+    if raw:
+        return Path(raw).expanduser().resolve()
+    return Path.cwd().resolve()
 
 
 @dataclass(frozen=True)

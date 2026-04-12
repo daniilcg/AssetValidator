@@ -10,7 +10,6 @@ from __future__ import annotations
 import gc
 import json
 import logging
-import sys
 from concurrent.futures import ThreadPoolExecutor, TimeoutError, as_completed
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -597,7 +596,7 @@ def _main_cli_argparse() -> None:
             mongo_collection=args.mongo_collection,
         )
     except ValueError as exc:
-        print(str(exc), file=sys.stderr)
+        logging.getLogger(__name__).error("%s", exc)
         raise SystemExit(2) from None
 
     validator = AssetValidator(

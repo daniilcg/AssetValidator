@@ -1,4 +1,4 @@
-# Asset Validator
+# Asset Validator (Production Validation Framework)
 
 ![AssetValidator icon](assets/icon.svg)
 
@@ -125,8 +125,12 @@ pip install -e ".[test]"
 ### As a library
 
 ```python
+import logging
+
 from pipeline.core.asset_validator import AssetValidator
 from pipeline.core.db_interface import MockAssetDatabase
+
+logging.basicConfig(level=logging.INFO)
 
 # Create validator
 validator = AssetValidator(
@@ -146,9 +150,9 @@ summary = validator.validate_batch(assets)
 summary.print_report()
 
 if summary.failed > 0:
-    print(f"Validation failed for {summary.failed} assets")
+    logging.info("Validation failed for %s assets", summary.failed)
 else:
-    print("All assets OK, starting render")
+    logging.info("All assets OK, starting render")
 ```
 
 ### From command line
@@ -177,9 +181,13 @@ def submit_render(job_name, asset_list):
 
 Environment variables:
 
-ASSET_ROOT: Root directory for assets (default: /mnt/library/assets)
+PROJECT_PATH: Base directory when `ASSETVALIDATOR_BASE_DIR` is unset (use instead of a fixed path like `D:/Work/...`).
 
-CACHE_ROOT: Cache directory (default: /mnt/cache/asset_validator)
+ASSETVALIDATOR_BASE_DIR: Base directory for default `ASSET_ROOT` / `CACHE_ROOT` (overrides `PROJECT_PATH` when set).
+
+ASSET_ROOT: Root directory for assets (default: `{base}/assets`)
+
+CACHE_ROOT: Cache directory (default: `{base}/.asset_validator_cache`)
 
 VALIDATION_THREADS: Number of threads (default: 16)
 
