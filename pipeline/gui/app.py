@@ -42,100 +42,101 @@ from pipeline.core.db_interface import (
 
 STYLE_SHEET = """
 QMainWindow {
-    background-color: #272822;
+    background-color: #090B10;
 }
 QWidget {
     background: transparent;
-    color: #F8F8F2;
+    color: #ECF1FF;
     font-size: 12px;
 }
 QFrame#HeaderFrame {
-    border: 1px solid #3E3D32;
-    border-radius: 10px;
+    border: 1px solid #2B3243;
+    border-radius: 12px;
     background: qlineargradient(
         x1:0, y1:0, x2:1, y2:1,
-        stop:0 #31322C, stop:1 #262822
+        stop:0 #131722, stop:1 #10131B
     );
 }
 QGroupBox {
-    border: 1px solid #3E3D32;
-    border-radius: 8px;
+    border: 1px solid #2B3243;
+    border-radius: 12px;
     margin-top: 12px;
-    padding: 8px;
-    background-color: #2D2E27;
+    padding: 10px;
+    background-color: #131722;
 }
 QGroupBox::title {
     subcontrol-origin: margin;
     left: 10px;
     padding: 0 6px;
-    color: #A6E22E;
+    color: #7CFF4F;
     font-weight: 600;
 }
 QLineEdit, QComboBox, QTextEdit, QTableWidget {
-    background-color: #1F201B;
-    border: 1px solid #49483E;
-    border-radius: 6px;
+    background-color: #0D1220;
+    border: 1px solid #2B3243;
+    border-radius: 10px;
     padding: 6px;
-    color: #F8F8F2;
-    selection-background-color: #66D9EF;
-    selection-color: #1B1D1A;
+    color: #ECF1FF;
+    selection-background-color: #34D4FF;
+    selection-color: #081207;
 }
 QComboBox::drop-down {
     border: none;
     width: 20px;
 }
 QComboBox QAbstractItemView {
-    background-color: #1F201B;
-    border: 1px solid #49483E;
-    color: #F8F8F2;
-    selection-background-color: #66D9EF;
-    selection-color: #1B1D1A;
+    background-color: #0D1220;
+    border: 1px solid #2B3243;
+    color: #ECF1FF;
+    selection-background-color: #34D4FF;
+    selection-color: #081207;
 }
 QTableWidget {
-    gridline-color: #3E3D32;
+    gridline-color: #2B3243;
 }
 QHeaderView::section {
-    background-color: #34352E;
-    color: #FD971F;
+    background-color: #101526;
+    color: #D7E5FF;
     border: 0;
-    border-right: 1px solid #3E3D32;
+    border-right: 1px solid #2B3243;
     padding: 6px;
     font-weight: 600;
 }
 QPushButton {
-    border: 1px solid #5A594A;
-    border-radius: 8px;
-    background-color: #3D3E36;
-    color: #F8F8F2;
+    border: 1px solid #2B3243;
+    border-radius: 10px;
+    background-color: #121728;
+    color: #D8E1FF;
     padding: 7px 12px;
 }
 QPushButton:hover {
-    background-color: #4A4B42;
+    background-color: #1A2232;
+    border-color: #3A4B73;
 }
 QPushButton:disabled {
-    color: #8A8A80;
-    border-color: #4A4B42;
-    background-color: #32332C;
+    color: #7C88A6;
+    border-color: #2B3243;
+    background-color: #10131B;
 }
 QPushButton#PrimaryButton {
-    border-color: #6AAE27;
+    border-color: #9FFF70;
     background: qlineargradient(
         x1:0, y1:0, x2:0, y2:1,
-        stop:0 #A6E22E, stop:1 #7DB221
+        stop:0 #9BFF67, stop:1 #7CFF4F
     );
-    color: #1B1D1A;
+    color: #081207;
     font-weight: 700;
 }
 QPushButton#PrimaryButton:hover {
     background: qlineargradient(
         x1:0, y1:0, x2:0, y2:1,
-        stop:0 #B4F037, stop:1 #88C526
+        stop:0 #B6FF86, stop:1 #8DFF63
     );
 }
 QStatusBar {
-    background-color: #1F201B;
-    color: #E6DB74;
-    border-top: 1px solid #3E3D32;
+    background-color: #0A0E17;
+    color: #99A3BD;
+    border-top: 1px solid #20283B;
 }
 """
 
@@ -336,9 +337,9 @@ class MainWindow(QMainWindow):
 
         title_box = QVBoxLayout()
         title = QLabel("AssetValidator")
-        title.setStyleSheet("font-size: 18px; font-weight: 700; color: #F8F8F2;")
+        title.setStyleSheet("font-size: 18px; font-weight: 700; color: #ECF1FF;")
         subtitle = QLabel("Clean validation for VFX/CG assets")
-        subtitle.setStyleSheet("font-size: 12px; color: #A6E22E;")
+        subtitle.setStyleSheet("font-size: 12px; color: #99A3BD;")
         title_box.addWidget(title)
         title_box.addWidget(subtitle)
         header_layout.addLayout(title_box)
@@ -470,7 +471,7 @@ class MainWindow(QMainWindow):
         self.btn_validate.setEnabled(False)
         self._append_log(f"Starting validation: {len(assets)} assets…")
         self.detail_log.clear()
-        self._append_detail_log("Starting validation run…", "#E6DB74")
+        self._append_detail_log("Starting validation run…", "#FFD36A")
 
         worker = ValidateWorker(config, assets)
         worker.signals.started.connect(self._on_started)
@@ -491,14 +492,14 @@ class MainWindow(QMainWindow):
         if isinstance(r, ValidationResult):
             asset_ref = f"{r.asset_name} {r.version}"
             if r.is_valid:
-                self._append_detail_log(f"PASS {asset_ref}", "#A6E22E")
+                self._append_detail_log(f"PASS {asset_ref}", "#7CFF4F")
             else:
-                self._append_detail_log(f"FAIL {asset_ref}", "#F92672")
+                self._append_detail_log(f"FAIL {asset_ref}", "#FF2F5B")
                 if r.errors:
                     for err in r.errors:
-                        self._append_detail_log(f"  - {err}", "#FF6F91")
+                        self._append_detail_log(f"  - {err}", "#FF6B86")
                 else:
-                    self._append_detail_log("  - Unknown validation error", "#FF6F91")
+                    self._append_detail_log("  - Unknown validation error", "#FF6B86")
 
     @Slot(object)
     def _on_finished(self, summary: object) -> None:
@@ -510,11 +511,11 @@ class MainWindow(QMainWindow):
             )
             self._append_detail_log(
                 f"Done. total={summary.total}, passed={summary.passed}, failed={summary.failed}",
-                "#E6DB74",
+                "#FFD36A",
             )
         else:
             self._append_log("Done.")
-            self._append_detail_log("Done.", "#E6DB74")
+            self._append_detail_log("Done.", "#FFD36A")
 
     @Slot(str)
     def _on_failed(self, message: str) -> None:
@@ -522,7 +523,7 @@ class MainWindow(QMainWindow):
         self.statusBar().clearMessage()
         QMessageBox.critical(self, "Validation failed", message)
         self._append_log(f"ERROR: {message}")
-        self._append_detail_log(f"ERROR: {message}", "#F92672")
+        self._append_detail_log(f"ERROR: {message}", "#FF2F5B")
 
     def _append_log(self, text: str) -> None:
         self.log.append(text)
