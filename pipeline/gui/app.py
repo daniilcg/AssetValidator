@@ -3,6 +3,9 @@ from __future__ import annotations
 import html
 import json
 import sys
+import urllib.error
+import urllib.request
+import webbrowser
 from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Optional, Tuple
@@ -39,6 +42,11 @@ from pipeline.core.db_interface import (
     MongoAssetDatabase,
     PostgresAssetDatabase,
 )
+
+APP_VERSION = "0.1.5"
+LATEST_RELEASE_API = "https://api.github.com/repos/daniilcg/AssetValidator/releases/latest"
+LATEST_DOWNLOAD_WIN = "https://github.com/daniilcg/AssetValidator/releases/latest/download/AssetValidator.exe"
+LATEST_DOWNLOAD_LINUX = "https://github.com/daniilcg/AssetValidator/releases/latest/download/AssetValidator"
 
 STYLE_SHEET = """
 QMainWindow {
@@ -149,6 +157,30 @@ def _resource_root() -> Path:
 
 def _project_icon_path() -> Path:
     return (_resource_root() / "assets" / "icon.svg").resolve()
+
+
+def _version_tuple(raw: str) -> Tuple[int, ...]:
+    core = raw.strip().lstrip("v").split("-", 1)[0]
+    parts: List[int] = []
+    for token in core.split("."):
+        try:
+            parts.append(int(token))
+        except ValueError:
+            parts.append(0)
+    return tuple(parts)
+
+
+def _latest_release_tag() -> str:
+    req = urllib.request.Request(
+        LATEST_RELEASE_API,
+        headers={"Accept": "application/vnd.github+json", "User-Agent": "AssetValidator"},
+    )
+    with urllib.request.urlopen(req, timeout=4) as resp:
+        data = json.loads(resp.read().decode("utf-8"))
+    tag = str(data.get("tag_name", "")).strip()
+    if not tag:
+        raise ValueError("Release tag is missing")
+    return tag
 
 
 def _parse_asset_triplet(asset_str: str) -> Tuple[str, str, str]:
@@ -302,15 +334,18 @@ class MainWindow(QMainWindow):
         self.btn_clear = QPushButton("Clear list")
         self.btn_validate = QPushButton("Validate")
         self.btn_validate.setObjectName("PrimaryButton")
+        self.btn_update = QPushButton("Check updates")
 
         self.btn_add.clicked.connect(self._add_asset_row)
         self.btn_import.clicked.connect(self._import_assets)
         self.btn_clear.clicked.connect(self._clear_assets)
         self.btn_validate.clicked.connect(self._start_validation)
+        self.btn_update.clicked.connect(self._check_updates)
         self.db_backend.currentTextChanged.connect(self._on_db_backend_changed)
 
         self._build_layout()
         self._on_db_backend_changed(self.db_backend.currentText())
+        self._check_updates(silent_up_to_date=True)
 
     def _build_layout(self) -> None:
         root = QWidget()
@@ -344,6 +379,7 @@ class MainWindow(QMainWindow):
         title_box.addWidget(subtitle)
         header_layout.addLayout(title_box)
         header_layout.addStretch(1)
+        header_layout.addWidget(self.btn_update)
 
         cfg = QGroupBox("Configuration")
         cfg_layout = QGridLayout(cfg)
@@ -392,6 +428,32 @@ class MainWindow(QMainWindow):
         main.addLayout(right, 2)
         root_layout.addWidget(header)
         root_layout.addLayout(main, 1)
+
+    @Slot()
+    def _check_updates(self, silent_up_to_date: bool = False) -> None:
+        try:
+            latest_tag = _latest_release_tag()
+        except (urllib.error.URLError, TimeoutError, ValueError, json.JSONDecodeError):
+            if not silent_up_to_date:
+                self._append_log("Could not check updates right now.")
+            return
+
+        latest = _version_tuple(latest_tag)
+        current = _version_tuple(APP_VERSION)
+        if latest <= current:
+            if not silent_up_to_date:
+                self._append_log(f"Already up to date (v{APP_VERSION}).")
+            return
+
+        self._append_log(f"Update available: {latest_tag} (current v{APP_VERSION})")
+        target_url = LATEST_DOWNLOAD_WIN if sys.platform.startswith("win") else LATEST_DOWNLOAD_LINUX
+        answer = QMessageBox.question(
+            self,
+            "Update available",
+            f"New version {latest_tag} is available.\nCurrent version: v{APP_VERSION}\n\nOpen download page now?",
+        )
+        if answer == QMessageBox.Yes:
+            webbrowser.open(target_url)
 
     @Slot()
     def _add_asset_row(self) -> None:
