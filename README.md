@@ -16,7 +16,7 @@ It includes the modern GUI theme and color-coded validation details (green `PASS
 
 ### GUI Preview
 
-![AssetValidator GUI preview](assets/gui-preview-v0.1.4-r3.png)
+![AssetValidator GUI preview](assets/gui-preview-v0.1.5-r3.png)
 
 Simple workflow:
 
