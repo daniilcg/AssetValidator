@@ -1,7 +1,7 @@
 {
-  "tag": "v2.6.0",
-  "version": "2.6.0",
-  "notes": "**Commercial licensing \u2014 14-day trial, then paid**\n\n- AssetValidator is no longer MIT; see [LICENSE](LICENSE) (commercial EULA)\n- 14-day free trial on first use; validation blocked after expiry without a license key\n- Signed license keys: `AV2-<PLAN>-<EXPIRY>-<SIG>` (`scripts/generate_license.py`)\n- GUI: **License** button, trial banner, activation dialog\n- CLI: `--license-status`, `--activate-license <KEY>`\n- Plans: Personal $5, Team $15, Business $49, Studio $99 (monthly)",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.0/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.0/AssetValidator"
+  "tag": "v2.6.2",
+  "version": "2.6.2",
+  "notes": "**In-app manual, private source split, site fixes**\n\n- GUI **Manual** opens an in-app window (no browser); `MANUAL.md` bundled in the installer\n- Public site repo contains only `landing/` \u2014 no source or `maintainer/` tools\n- Installers published via GitHub Releases on the public `AssetValidator` repo\n- Landing: compact header nav, installers linked from Releases",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.2/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.2/AssetValidator"
 }
