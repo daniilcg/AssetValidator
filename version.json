@@ -1,7 +1,7 @@
 {
-  "tag": "v2.6.4",
-  "version": "2.6.4",
-  "notes": "**Fix: validation checks missing in Windows installer (PyInstaller)**\n\n- Bundle `pipeline.validation.checks.builtin` and validation submodules in the `.exe`\n- Fixes `No module named 'pipeline.validation.checks.builtin'` on Validate",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.4/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.4/AssetValidator"
+  "tag": "v2.6.5",
+  "version": "2.6.5",
+  "notes": "**Fix: validation checks in installer + asset table readability**\n\n- Register `CHECKS` via direct import \u2014 fixes `pipeline.validation.checks.builtin` in `.exe`\n- Pre-load validation submodules in frozen builds before running checks\n- Dark alternating row colors in the asset list (no white-on-white text)",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.5/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.5/AssetValidator"
 }
