@@ -1,7 +1,7 @@
 {
-  "tag": "v2.6.3",
-  "version": "2.6.3",
-  "notes": "**AI assistant \u2014 full error-code knowledge**\n\n- Helpdesk knows **40+ validation/DCC error codes** with step-by-step fixes\n- Natural-language questions (`maya n-gons`, `trial expired`, `how it works`)\n- Email support hint only after repeated low-confidence replies\n- In-app **Manual** unchanged; bundled in installer",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.3/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.3/AssetValidator"
+  "tag": "v2.6.4",
+  "version": "2.6.4",
+  "notes": "**Fix: validation checks missing in Windows installer (PyInstaller)**\n\n- Bundle `pipeline.validation.checks.builtin` and validation submodules in the `.exe`\n- Fixes `No module named 'pipeline.validation.checks.builtin'` on Validate",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.4/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.4/AssetValidator"
 }
