@@ -28,7 +28,7 @@ AssetValidator is a **USD-first publish gate** for VFX/CG pipelines: file valida
 
 ### Windows (installer)
 
-1. Download [AssetValidator-Setup.exe](https://daniilcg.github.io/AssetValidator/downloads/AssetValidator-Setup.exe) from the product website
+1. Download [AssetValidator-Setup.exe](https://github.com/daniilcg/AssetValidator/releases/latest/download/AssetValidator-Setup.exe) from the product website
 2. Install and launch **AssetValidator**
 3. Set **Asset root** and **Cache root**
 4. Add assets or use **Scan folder**
