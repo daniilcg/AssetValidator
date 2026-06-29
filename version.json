@@ -1,7 +1,7 @@
 {
-  "tag": "v2.6.2",
-  "version": "2.6.2",
-  "notes": "**In-app manual, private source split, site fixes**\n\n- GUI **Manual** opens an in-app window (no browser); `MANUAL.md` bundled in the installer\n- Public site repo contains only `landing/` \u2014 no source or `maintainer/` tools\n- Installers published via GitHub Releases on the public `AssetValidator` repo\n- Landing: compact header nav, installers linked from Releases",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.2/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.2/AssetValidator"
+  "tag": "v2.6.3",
+  "version": "2.6.3",
+  "notes": "**AI assistant \u2014 full error-code knowledge**\n\n- Helpdesk knows **40+ validation/DCC error codes** with step-by-step fixes\n- Natural-language questions (`maya n-gons`, `trial expired`, `how it works`)\n- Email support hint only after repeated low-confidence replies\n- In-app **Manual** unchanged; bundled in installer",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.3/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.6.3/AssetValidator"
 }
