@@ -1,7 +1,7 @@
 {
-  "tag": "v2.7.3",
-  "version": "2.7.3",
-  "notes": "**Fix: compact Performance tab \u2014 asset list visible again**\n\n- Small sparklines in one row (~38px), compact metrics line\n- Table gets vertical stretch; no auto-switch away from Paths on Validate",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.3/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.3/AssetValidator"
+  "tag": "v2.7.4",
+  "version": "2.7.4",
+  "notes": "**Fix: updater closes AssetValidator before installer starts**\n\n- Windows in-app update now launches a detached PowerShell updater\n- Updater waits for the current GUI PID to exit, then starts `AssetValidator-Setup.exe`\n- GUI schedules `QApplication.quit()` and a short forced process exit to avoid Task Manager cleanup",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.4/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.4/AssetValidator"
 }
