@@ -1,7 +1,7 @@
 {
-  "tag": "v2.8.4",
-  "version": "2.8.4",
-  "notes": "**Fix: Open report in browser (ERR_EMPTY_RESPONSE on Windows)**\n\n- Open the self-contained HTML report via `file://` instead of a local HTTP server\n- Windows fallback uses `os.startfile` when `webbrowser.open` fails\n- GUI opens the report from the main thread with the same file-based path",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.4/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.4/AssetValidator"
+  "tag": "v2.9.0",
+  "version": "2.9.0",
+  "notes": "**Feat: 520 built-in checks \u2014 full studio coverage beyond USD**\n\n- **formats.*** \u2014 TIFF, TGA, TX, WebP, DDS, bgeo, MTL, PLY, STL, USDZ/USDC, glTF/GLB/OBJ/FBX/ABC/VDB depth\n- **pipeline.*** \u2014 DCC folders and extensions (Nuke, Katana, Mari, Substance, Unreal, Unity, Houdini, Maya, etc.)\n- **render.*** \u2014 Mantra, Karma, RenderMan, Arnold, V-Ray, Redshift, Octane, farm queues\n- **dcc.*** \u2014 Clarisse, Modo, Fusion, Resolve, AE, Premiere, Photoshop, Marvelous, Rizom, game engines\n- **audio.*** \u2014 WAV, FL",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.9.0/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.9.0/AssetValidator"
 }
