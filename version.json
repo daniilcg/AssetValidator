@@ -1,7 +1,7 @@
 {
-  "tag": "v2.7.2",
-  "version": "2.7.2",
-  "notes": "**Plugins UX + live performance tab**\n\n- Plugin **Docs** opens in-app Manual (section: Custom check plugins)\n- **Import plugin\u2026** in Plugins dialog\n- New **Performance** tab: live process RAM, CPU, system RAM, NVIDIA VRAM graphs during Validate",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.2/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.2/AssetValidator"
+  "tag": "v2.7.3",
+  "version": "2.7.3",
+  "notes": "**Fix: compact Performance tab \u2014 asset list visible again**\n\n- Small sparklines in one row (~38px), compact metrics line\n- Table gets vertical stretch; no auto-switch away from Paths on Validate",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.3/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.3/AssetValidator"
 }
