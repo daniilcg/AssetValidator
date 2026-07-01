@@ -4,7 +4,7 @@
 
 AssetValidator is **commercial software** with a **14-day free trial**. After trial, a paid license is required.
 
-**What it does:** validates VFX/CG publishes — paths, naming, USD closure, textures, and more. Use ruleset **`general`** for mixed formats (USD, ABC, FBX, EXR, …). USD-specific checks run only on USD files.
+**What it does:** validates VFX/CG publishes with **300+ built-in checks** — paths, naming, USD closure, textures, media headers, delivery hygiene, and more. Use ruleset **`general`** for mixed formats (USD, ABC, FBX, EXR, …). Use **`studio`** for the full built-in check pack. USD-specific checks run only on USD files.
 
 ---
 
@@ -14,7 +14,7 @@ AssetValidator is **commercial software** with a **14-day free trial**. After tr
 2. Install and launch **AssetValidator**
 3. Set **Asset root** and **Cache root**
 4. Add assets or use **Scan folder**
-5. Choose ruleset **`general`** (all formats) or **`default`** (USD-focused)
+5. Choose ruleset **`general`** (all formats), **`default`** (USD-focused), or **`studio`** (full 300+ check pack)
 6. Click **Validate**
 
 ---
@@ -61,6 +61,7 @@ validate-assets --license-status
 |---------|----------|
 | `general` | All common formats — paths on every file; USD checks on USD only |
 | `default` | Daily USD checks, UDIM, metadata |
+| `studio` | Full built-in library — 300+ checks (paths, naming, USD, media, delivery) |
 | `film` | Broader extensions, texture whitelist |
 | `strict` | Strict publish gate |
 

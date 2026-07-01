@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AssetValidator (Production Validation Framework) - VFX/CG Asset Validation Platform</title>
-  <meta name="description" content="AssetValidator — VFX/CG asset validation with 14-day free trial. USD checks, DCC hooks, CLI/GUI, studio integrations.">
+  <meta name="description" content="AssetValidator — VFX/CG asset validation with 300+ built-in checks, 14-day free trial. USD, Alembic, FBX, textures, naming, delivery hygiene. GUI, CLI, CI.">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,9 +42,9 @@
         <h1>Validate VFX/CG Assets Before They Break Production</h1>
         <p>
           AssetValidator is a <strong>publish gate</strong> for VFX/CG pipelines: scan folders,
-          run checks on <strong>USD, Alembic, FBX, textures, caches</strong>, and more — then get
-          clear PASS/FAIL with fix hints in GUI or CI. Not just USD: choose the <code>general</code>
-          ruleset for mixed asset types; USD-specific checks run only on USD files.
+          run <strong>300+ built-in checks</strong> on <strong>USD, Alembic, FBX, textures, caches</strong>, and more — then get
+          clear PASS/FAIL with fix hints in GUI or CI. Use <code>general</code> for everyday mixed pipelines,
+          or <code>studio</code> for the full check pack (paths, naming, USD, media, delivery).
         </p>
         <div class="hero-cta">
           <a class="btn btn-accent" href="#download">Download &amp; start trial</a>
@@ -76,8 +76,8 @@
         </div>
         <div class="hero-mini">
           <div class="mini">
-            <div class="mini-title">Pipeline Ready</div>
-            <div class="mini-text">Fast, deterministic validation gates for CI and production workflows.</div>
+            <div class="mini-title">300+ Built-in Checks</div>
+            <div class="mini-text">Paths, naming, USD, textures, caches, and delivery hygiene — no plugins required to start.</div>
           </div>
           <div class="mini">
             <div class="mini-title">Team Visibility</div>
@@ -102,13 +102,20 @@
           </p>
         </article>
         <article class="card">
-          <h3>Built-in checks (9+ core, expandable)</h3>
+          <h3>300+ built-in checks out of the box</h3>
+          <p>
+            No empty shell — AssetValidator ships with a full validation library, visible in the
+            in-app <strong>Plugins</strong> panel as built-in checks. Categories include:
+          </p>
           <ul>
-            <li>Path safety, naming templates, allowed extensions</li>
-            <li>USD dependency closure — missing refs before render</li>
-            <li>Texture preflight, UDIM, file size limits</li>
-            <li>Absolute paths, metadata, deep stage rules</li>
+            <li><strong>Paths &amp; naming</strong> — templates, snake_case, forbidden folders, version layout</li>
+            <li><strong>USD</strong> — closure, default prim, metadata, absolute paths, materials</li>
+            <li><strong>Media</strong> — texture/EXR/VDB/FBX headers, UDIM, sequence padding</li>
+            <li><strong>Delivery</strong> — no temp files, logs, scripts, or personal paths in publish</li>
           </ul>
+          <p>
+            Ruleset <code>studio</code> enables the full pack; <code>general</code> / <code>default</code> stay lighter for daily work.
+          </p>
         </article>
         <article class="card">
           <h3>DCC + studio integrations</h3>
@@ -118,11 +125,11 @@
           </p>
         </article>
         <article class="card">
-          <h3>Custom checks for your studio (Business+)</h3>
+          <h3>Extend with custom plugins (Business+)</h3>
           <p>
-            Large studios already run 200+ internal rules. AssetValidator lets TDs add
-            <strong>Python plugins</strong> — drop <code>.py</code> files in the plugins folder or use the
-            in-app <strong>Custom plugins</strong> panel. No recompile; reload and validate.
+            The built-in library covers most publish gates — but every studio has its own naming and pipeline quirks.
+            TDs can add <strong>Python plugins</strong> on top: drop <code>.py</code> files in the plugins folder or use the
+            in-app <strong>Custom plugins</strong> panel. Reload without recompile.
           </p>
         </article>
       </div>
@@ -168,12 +175,16 @@
       </div>
       <div class="grid grid-3">
         <article class="card">
+          <h3>300+ Built-in Checks</h3>
+          <p>Paths, naming, USD stage rules, texture/cache formats, and delivery hygiene — included in every plan.</p>
+        </article>
+        <article class="card">
           <h3>Dependency Closure</h3>
           <p>Walk USD references and textures — catch missing files before render.</p>
         </article>
         <article class="card">
           <h3>Deep USD + Texture Checks</h3>
-          <p>Default prim, stage sanity, texture size, and UDIM rules.</p>
+          <p>Default prim, stage sanity, texture size, UDIM gaps, and metadata rules.</p>
         </article>
         <article class="card">
           <h3>Shareable Reports + Pro Dashboard</h3>
@@ -229,7 +240,7 @@ validate-deadline --ruleset strict</code></pre>
       <div class="timeline">
         <div class="step"><span>1</span>Download the installer and start your <strong>14-day free trial</strong>.</div>
         <div class="step"><span>2</span>Set asset/cache paths and import asset lists in the GUI or CLI.</div>
-        <div class="step"><span>3</span>Run validation — USD closure, textures, DCC checks, PASS/FAIL details.</div>
+        <div class="step"><span>3</span>Run validation — pick <code>studio</code> for 300+ checks or <code>general</code> for lighter daily gates.</div>
         <div class="step"><span>4</span>Before trial ends, pay via PayPal and receive your <strong>license key by email</strong>.</div>
         <div class="step"><span>5</span>Activate in the app (<strong>License</strong> button) and keep validating.</div>
       </div>
@@ -327,7 +338,7 @@ dragon:v042:characters/dragon/v042/dragon_v042.usd</textarea>
           <p class="target">1 user</p>
           <div class="price">$5 / mo</div>
           <ul>
-            <li>Built-in checks + rulesets</li>
+            <li>300+ built-in checks + rulesets (<code>studio</code>, <code>general</code>, …)</li>
             <li>GUI, CLI, HTML/JSON reports</li>
             <li>Email support</li>
           </ul>
