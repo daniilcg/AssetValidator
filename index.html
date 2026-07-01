@@ -22,6 +22,7 @@
         <span class="brand-name">AssetValidator</span>
       </a>
       <nav class="nav" aria-label="Primary">
+        <a href="#product">What it does</a>
         <a href="#features">Features</a>
         <a href="#integrations">Integrations</a>
         <a href="#workflow">How It Works</a>
@@ -40,17 +41,17 @@
         <div class="pill">14-Day Free Trial</div>
         <h1>Validate VFX/CG Assets Before They Break Production</h1>
         <p>
-          AssetValidator is a commercial validation platform for VFX/CG pipelines: USD closure,
-          texture preflight, DCC in-scene checks, parallel batch runs, and clear PASS/FAIL in CLI and GUI.
-          <strong>Try free for 14 days</strong> — no credit card. After trial, purchase a plan from $5/month.
-          License keys are sent by email after payment.
+          AssetValidator is a <strong>publish gate</strong> for VFX/CG pipelines: scan folders,
+          run checks on <strong>USD, Alembic, FBX, textures, caches</strong>, and more — then get
+          clear PASS/FAIL with fix hints in GUI or CI. Not just USD: choose the <code>general</code>
+          ruleset for mixed asset types; USD-specific checks run only on USD files.
         </p>
         <div class="hero-cta">
           <a class="btn btn-accent" href="#download">Download &amp; start trial</a>
-          <a class="btn btn-ghost" href="#license">How licensing works</a>
+          <a class="btn btn-ghost" href="#product">See what it checks</a>
         </div>
         <div class="hero-meta">
-          <span>14-day full trial · commercial software</span>
+          <span>14-day full trial · 1 user · no credit card</span>
           <span>Contact: <a href="mailto:assetvalidator@gmail.com">assetvalidator@gmail.com</a></span>
           <span class="byline">
             Built by <strong>Daniel Segal</strong>
@@ -83,6 +84,47 @@
             <div class="mini-text">Clear PASS/FAIL reasons to fix issues before they hit render or publish.</div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="product" class="features container">
+      <div class="section-head">
+        <h2>What AssetValidator Does</h2>
+        <p>A validation gate between artists and production — same rules in GUI, CLI, DCC, and CI.</p>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Scan &amp; validate any publish format</h3>
+          <p>
+            Point at a folder or drag files into the asset list. Built-in scan supports
+            <strong>USD, ABC, FBX, OBJ, VDB, EXR, PNG/JPG/TIFF, TX</strong>, and more.
+            Pick ruleset <code>general</code> for mixed pipelines, or <code>default</code> / <code>strict</code> for USD-heavy gates.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Built-in checks (9+ core, expandable)</h3>
+          <ul>
+            <li>Path safety, naming templates, allowed extensions</li>
+            <li>USD dependency closure — missing refs before render</li>
+            <li>Texture preflight, UDIM, file size limits</li>
+            <li>Absolute paths, metadata, deep stage rules</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>DCC + studio integrations</h3>
+          <p>
+            Preflight in <strong>Houdini, Maya, Blender, Nuke</strong> before export.
+            Hooks for <strong>ShotGrid, ftrack, Slack, Telegram, Deadline</strong>, and GitHub Actions CI.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Custom checks for your studio (Business+)</h3>
+          <p>
+            Large studios already run 200+ internal rules. AssetValidator lets TDs add
+            <strong>Python plugins</strong> — drop <code>.py</code> files in the plugins folder or use the
+            in-app <strong>Custom plugins</strong> panel. No recompile; reload and validate.
+          </p>
+        </article>
       </div>
     </section>
 
@@ -259,8 +301,8 @@ dragon:v042:characters/dragon/v042/dragon_v042.usd</textarea>
 
     <section id="pricing" class="pricing container">
       <div class="section-head">
-        <h2>Choose Your Plan</h2>
-        <p>Commercial software with a free trial. Paid plans unlock validation after day 14.</p>
+        <h2>Plans &amp; pricing</h2>
+        <p>Pay for <strong>who uses it</strong> and <strong>how deep you integrate</strong>. All paid plans include validation after trial.</p>
       </div>
       <div class="billing-toggle">
         <button class="toggle-btn active" data-billing="monthly" type="button">Monthly</button>
@@ -269,12 +311,12 @@ dragon:v042:characters/dragon/v042/dragon_v042.usd</textarea>
       <div class="grid grid-5">
         <article class="price-card">
           <h3>Trial</h3>
-          <p class="target">New users</p>
+          <p class="target">1 user · 14 days</p>
           <div class="price">$0</div>
           <ul>
-            <li>Full product for 14 days</li>
-            <li>CLI, GUI, rulesets, integrations</li>
-            <li>No credit card required</li>
+            <li>Full product — all checks &amp; integrations</li>
+            <li>Try custom plugins before you buy</li>
+            <li>No credit card</li>
           </ul>
           <a class="btn btn-ghost" href="#download">Start trial</a>
         </article>
@@ -282,54 +324,54 @@ dragon:v042:characters/dragon/v042/dragon_v042.usd</textarea>
         <article class="price-card highlighted" data-monthly="$5 / mo" data-yearly="$58.20 / yr">
           <div class="ribbon ribbon-discount" aria-hidden="true">Save 3%</div>
           <h3>Personal</h3>
-          <p class="target">Solo creators</p>
+          <p class="target">1 user</p>
           <div class="price">$5 / mo</div>
           <ul>
-            <li>Priority bug triage</li>
-            <li>Release update guidance</li>
+            <li>Built-in checks + rulesets</li>
+            <li>GUI, CLI, HTML/JSON reports</li>
             <li>Email support</li>
           </ul>
           <div class="pay-links monthly-links">
-            <a href="https://www.paypal.me/daniilsegal90/5" target="_blank" rel="noopener">Pay Monthly</a>
+            <a href="https://www.paypal.me/segalcommic/5" target="_blank" rel="noopener">Pay Monthly</a>
           </div>
           <div class="pay-links yearly-links hidden">
-            <a href="https://www.paypal.me/daniilsegal90/58.20" target="_blank" rel="noopener">Pay Yearly</a>
+            <a href="https://www.paypal.me/segalcommic/58.20" target="_blank" rel="noopener">Pay Yearly</a>
           </div>
         </article>
 
         <article class="price-card" data-monthly="$15 / mo" data-yearly="$174.60 / yr">
           <div class="ribbon ribbon-discount" aria-hidden="true">Save 3%</div>
           <h3>Team</h3>
-          <p class="target">Small teams</p>
+          <p class="target">Up to 5 users</p>
           <div class="price">$15 / mo</div>
           <ul>
-            <li>Team onboarding call</li>
-            <li>Roadmap voting</li>
-            <li>Faster support response</li>
+            <li>Everything in Personal</li>
+            <li>CI / GitHub Actions + Jenkins</li>
+            <li>Shared reports &amp; history</li>
           </ul>
           <div class="pay-links monthly-links">
-            <a href="https://www.paypal.me/daniilsegal90/15" target="_blank" rel="noopener">Pay Monthly</a>
+            <a href="https://www.paypal.me/segalcommic/15" target="_blank" rel="noopener">Pay Monthly</a>
           </div>
           <div class="pay-links yearly-links hidden">
-            <a href="https://www.paypal.me/daniilsegal90/174.60" target="_blank" rel="noopener">Pay Yearly</a>
+            <a href="https://www.paypal.me/segalcommic/174.60" target="_blank" rel="noopener">Pay Yearly</a>
           </div>
         </article>
 
         <article class="price-card" data-monthly="$49 / mo" data-yearly="$570.12 / yr">
           <div class="ribbon ribbon-discount" aria-hidden="true">Save 3%</div>
           <h3>Business</h3>
-          <p class="target">Production teams</p>
+          <p class="target">Up to 25 users</p>
           <div class="price">$49 / mo</div>
           <ul>
-            <li>Integration setup help</li>
-            <li>Custom validation profiles</li>
-            <li>SLA support channel</li>
+            <li>Everything in Team</li>
+            <li><strong>Custom check plugins</strong></li>
+            <li>Custom rulesets + integration help</li>
           </ul>
           <div class="pay-links monthly-links">
-            <a href="https://www.paypal.me/daniilsegal90/49" target="_blank" rel="noopener">Pay Monthly</a>
+            <a href="https://www.paypal.me/segalcommic/49" target="_blank" rel="noopener">Pay Monthly</a>
           </div>
           <div class="pay-links yearly-links hidden">
-            <a href="https://www.paypal.me/daniilsegal90/570.12" target="_blank" rel="noopener">Pay Yearly</a>
+            <a href="https://www.paypal.me/segalcommic/570.12" target="_blank" rel="noopener">Pay Yearly</a>
           </div>
         </article>
 
@@ -337,24 +379,25 @@ dragon:v042:characters/dragon/v042/dragon_v042.usd</textarea>
           <div class="ribbon ribbon-premium" aria-hidden="true">Studio</div>
           <div class="ribbon ribbon-discount" aria-hidden="true">Save 3%</div>
           <h3>Studio</h3>
-          <p class="target">Enterprise pipelines</p>
+          <p class="target">Unlimited users</p>
           <div class="price">$99 / mo</div>
           <ul>
-            <li>Priority SLA</li>
-            <li>Pipeline onboarding</li>
-            <li>Advanced integration support</li>
+            <li>Everything in Business</li>
+            <li>Priority SLA + onboarding</li>
+            <li>Plugin SDK guidance for TDs</li>
           </ul>
           <div class="pay-links monthly-links">
-            <a href="https://www.paypal.me/daniilsegal90/99" target="_blank" rel="noopener">Pay Monthly</a>
+            <a href="https://www.paypal.me/segalcommic/99" target="_blank" rel="noopener">Pay Monthly</a>
           </div>
           <div class="pay-links yearly-links hidden">
-            <a href="https://www.paypal.me/daniilsegal90/1152.36" target="_blank" rel="noopener">Pay Yearly</a>
+            <a href="https://www.paypal.me/segalcommic/1152.36" target="_blank" rel="noopener">Pay Yearly</a>
           </div>
         </article>
       </div>
       <p class="pricing-note">
-        After payment, email <a href="mailto:assetvalidator@gmail.com">assetvalidator@gmail.com</a> with your PayPal receipt.
-        We send your license key within 24 hours (usually same day).
+        Pay via <a href="https://www.paypal.me/segalcommic" target="_blank" rel="noopener">PayPal (@segalcommic)</a>.
+        Email <a href="mailto:assetvalidator@gmail.com">assetvalidator@gmail.com</a> with your receipt —
+        license key within 24 hours.
       </p>
     </section>
 
@@ -376,7 +419,7 @@ dragon:v042:characters/dragon/v042/dragon_v042.usd</textarea>
         <article class="card">
           <h3>Pay → key by email</h3>
           <ul>
-            <li>Choose a plan above and pay via <a href="https://www.paypal.me/daniilsegal90" target="_blank" rel="noopener">PayPal</a></li>
+            <li>Choose a plan above and pay via <a href="https://www.paypal.me/segalcommic" target="_blank" rel="noopener">PayPal</a></li>
             <li>Email <a href="mailto:assetvalidator@gmail.com">assetvalidator@gmail.com</a> with your receipt</li>
             <li>Receive <code>AV2-PLAN-…</code> license key by email</li>
             <li>Activate: app <strong>License</strong> button or <code>validate-assets --activate-license KEY</code></li>
@@ -429,7 +472,7 @@ dragon:v042:characters/dragon/v042/dragon_v042.usd</textarea>
       </div>
       <div class="contact-wrap">
         <a class="btn btn-primary" href="mailto:assetvalidator@gmail.com">Email Us</a>
-        <a class="btn btn-ghost" href="https://www.paypal.me/daniilsegal90" target="_blank" rel="noopener">Support via PayPal</a>
+        <a class="btn btn-ghost" href="https://www.paypal.me/segalcommic" target="_blank" rel="noopener">Support via PayPal</a>
       </div>
       <p class="contact-meta">
         License keys and support: <a href="mailto:assetvalidator@gmail.com">assetvalidator@gmail.com</a>

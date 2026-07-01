@@ -1,8 +1,10 @@
 # AssetValidator — User Manual
 
-**Version 2.6.3** · [Product site](https://daniilcg.github.io/AssetValidator/)
+**Version 2.7.0** · [Product site](https://daniilcg.github.io/AssetValidator/)
 
 AssetValidator is **commercial software** with a **14-day free trial**. After trial, a paid license is required.
+
+**What it does:** validates VFX/CG publishes — paths, naming, USD closure, textures, and more. Use ruleset **`general`** for mixed formats (USD, ABC, FBX, EXR, …). USD-specific checks run only on USD files.
 
 ---
 
@@ -12,7 +14,8 @@ AssetValidator is **commercial software** with a **14-day free trial**. After tr
 2. Install and launch **AssetValidator**
 3. Set **Asset root** and **Cache root**
 4. Add assets or use **Scan folder**
-5. Click **Validate**
+5. Choose ruleset **`general`** (all formats) or **`default`** (USD-focused)
+6. Click **Validate**
 
 ---
 
@@ -22,22 +25,30 @@ AssetValidator is **commercial software** with a **14-day free trial**. After tr
 |------|---------|
 | **Paths** | Asset root, cache, threads, timeout, ruleset |
 | **Options** | Watch folder, fail on warnings, notifications, DCC report import |
-| **Database** | mock / Postgres / Mongo for hash history |
+| **Custom plugins** | Studio Python checks (Business / Studio license) |
 | **Manual** | In-app user manual (header button) |
 | **AI Assistant** | Help and support |
 | **License** | Trial status and key activation |
 
-**Workflow:** import assets → choose ruleset (`default`, `film`, `strict`) → **Validate** → read PASS/FAIL in the details panel.
+---
+
+## Plans (after trial)
+
+| Plan | Users | Includes |
+|------|-------|----------|
+| Personal | 1 | Built-in checks, GUI/CLI |
+| Team | up to 5 | + CI, shared reports |
+| Business | up to 25 | + **custom check plugins** |
+| Studio | unlimited | + SLA, onboarding |
 
 ---
 
 ## CLI basics
 
 ```bash
-validate-assets --asset-root /assets --ruleset film hero:v001:hero/v001/hero_v001.usd
+validate-assets --asset-root /assets --ruleset general hero:v001:hero/v001/hero_v001.usd
 validate-assets --list-rulesets
 validate-assets --license-status
-validate-assets --activate-license AV2-PERSONAL-PERPETUAL-XXXXXXXXXXXX
 ```
 
 **Asset format:** `name:version:relative_path` (relative to asset root).
@@ -48,27 +59,31 @@ validate-assets --activate-license AV2-PERSONAL-PERPETUAL-XXXXXXXXXXXX
 
 | Ruleset | Use case |
 |---------|----------|
+| `general` | All common formats — paths on every file; USD checks on USD only |
 | `default` | Daily USD checks, UDIM, metadata |
-| `film` | Broader extensions, texture whitelist, prim naming |
-| `strict` | Publish gate: stricter textures, timecode, colorSpace |
+| `film` | Broader extensions, texture whitelist |
+| `strict` | Strict publish gate |
 
-Custom rulesets are available in Studio plans — contact support.
+---
+
+## Custom plugins (Business+)
+
+Drop `.py` files in the plugins folder (GUI → **Custom plugins**). Each file exports `CHECKS = [MyCheck(), …]`. Full authoring guide is in the in-app **Manual**.
 
 ---
 
 ## License and trial
 
-1. **First launch** starts a 14-day trial.
-2. **During trial** — full validation in GUI and CLI.
-3. **After trial** — validation is blocked until you activate a paid key.
-4. **GUI:** header shows days left; click **License** to activate.
+1. **First launch** starts a 14-day trial (1 user, full product).
+2. **After trial** — validation blocked until you activate a paid key.
+3. **GUI:** click **License** to activate.
 
-Purchase: [PayPal](https://www.paypal.me/daniilsegal90) · email [assetvalidator@gmail.com](mailto:assetvalidator@gmail.com) for your key.
+Purchase: [PayPal @segalcommic](https://www.paypal.me/segalcommic) · email [assetvalidator@gmail.com](mailto:assetvalidator@gmail.com) for your key.
 
 ---
 
 ## Support
 
 - Email: **assetvalidator@gmail.com**
-- Subject for tickets: `TIKET_AV: <plan> user_<id>` (shown in the app)
-- Full manual: open **Manual** in the application (includes DCC and studio integration details)
+- Subject: `TIKET_AV: <plan> user_<id>` (shown in the app)
+- Full manual: **Manual** button in the application
