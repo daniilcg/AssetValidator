@@ -1,7 +1,7 @@
 {
-  "tag": "v2.9.0",
-  "version": "2.9.0",
-  "notes": "**Feat: 520 built-in checks \u2014 full studio coverage beyond USD**\n\n- **formats.*** \u2014 TIFF, TGA, TX, WebP, DDS, bgeo, MTL, PLY, STL, USDZ/USDC, glTF/GLB/OBJ/FBX/ABC/VDB depth\n- **pipeline.*** \u2014 DCC folders and extensions (Nuke, Katana, Mari, Substance, Unreal, Unity, Houdini, Maya, etc.)\n- **render.*** \u2014 Mantra, Karma, RenderMan, Arnold, V-Ray, Redshift, Octane, farm queues\n- **dcc.*** \u2014 Clarisse, Modo, Fusion, Resolve, AE, Premiere, Photoshop, Marvelous, Rizom, game engines\n- **audio.*** \u2014 WAV, FL",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.9.0/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.9.0/AssetValidator"
+  "tag": "v2.9.1",
+  "version": "2.9.1",
+  "notes": "**Fix: in-app updater on Windows (Program Files / silent install)**\n\n- Quote `/DIR=\"\u2026\"` when the install path contains spaces (e.g. `C:\\Program Files\\AssetValidator`)\n- Pass Inno Setup flags as a single argument string (`/VERYSILENT`, `/FORCECLOSEAPPLICATIONS`)\n- `Unblock-File` on downloaded installer (Mark-of-the-Web from browser download)\n- Log Inno Setup output to `%LOCALAPPDATA%\\AssetValidator\\update-inno.log`\n- Use full path to `powershell.exe`; wait longer before exit so files unlock\n- Sho",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.9.1/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.9.1/AssetValidator"
 }
