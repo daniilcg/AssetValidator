@@ -1,8 +1,8 @@
 {
-  "tag": "v3.4.0",
-  "version": "3.4.0",
-  "notes": "**Complete Tier 1\u20133 + in-app Tier 4 (no cloud dashboard)**\n\n- **DCC Publish Gate** \u2014 Validate before publish in Maya/Houdini/Nuke (blocks on FAIL)\n- **Full auto-fix** \u2014 rename, WIP quarantine, manifest sidecar, sequence padding + undo\n- **OCIO v2** \u2014 texture + EXR role checks against studio OCIO config\n- **Publish diff GUI** \u2014 colored table comparing validation JSON reports\n- **12-item checklists** \u2014 character/fx/comp/game publish wizards\n- **Dependency graph** \u2014 interactive vis-network viewer (",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.0/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.0/AssetValidator",
-  "macos_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.0/AssetValidator-macos.zip"
+  "tag": "v3.4.1",
+  "version": "3.4.1",
+  "notes": "**Fix: visible in-app updates, readable toolbar buttons, site contact link**\n\n- **Windows updater** \u2014 progress window during install; Inno `/SILENT` progress bar; no more \u201cclose and nothing happens\u201d\n- **Toolbar buttons** \u2014 two-row layout + auto-shrinking font so labels stay readable\n- **Landing** \u2014 Segal Communications mailto link (`segalcomminc@gmail.com`)",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.1/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.1/AssetValidator",
+  "macos_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.1/AssetValidator-macos.zip"
 }
