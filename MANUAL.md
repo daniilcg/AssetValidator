@@ -1,6 +1,6 @@
 # AssetValidator — User Manual
 
-**Version 2.7.4** · [Product site](https://daniilcg.github.io/AssetValidator/)
+**Version 2.8.0** · [Product site](https://daniilcg.github.io/AssetValidator/)
 
 AssetValidator is **commercial software** with a **14-day free trial**. After trial, a paid license is required.
 
