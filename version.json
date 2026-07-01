@@ -1,7 +1,7 @@
 {
-  "tag": "v2.7.0",
-  "version": "2.7.0",
-  "notes": "**Product clarity, multi-format validation, studio plugins**\n\n- PayPal checkout: **@segalcommic** (`paypal.me/segalcommic`)\n- Plans show **user seats** and what each tier includes (plugins on Business+)\n- Landing: **What it does** section \u2014 product before pricing\n- Ruleset **`general`** + broader folder scan (USD, ABC, FBX, textures, \u2026)\n- GUI **Custom plugins** panel + plugin authoring docs in MANUAL",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.0/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.0/AssetValidator"
+  "tag": "v2.7.1",
+  "version": "2.7.1",
+  "notes": "**Fix: app startup crash (license dialog import)**\n\n- Import `TRIAL_DAYS` from `pipeline.licensing.manager` instead of `billing`",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.1/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.7.1/AssetValidator"
 }
