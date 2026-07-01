@@ -1,7 +1,7 @@
 {
-  "tag": "v2.8.0",
-  "version": "2.8.0",
-  "notes": "**Built-in check library (300 checks) + studio ruleset**\n\n- New `pipeline/validation/checks/library/` with 300 production checks across paths, naming, filesystem, USD, media, and delivery hygiene\n- New **`studio`** ruleset enables the full check pack (use `default` / `general` for lighter validation)\n- `scripts/generate_studio_ruleset.py` regenerates `studio.yml` when checks are added\n- All library checks appear as built-in in the Plugins dialog",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.0/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.0/AssetValidator"
+  "tag": "v2.8.1",
+  "version": "2.8.1",
+  "notes": "**Fix: Windows update crash (python311.dll / _MEI temp)**\n\n- Windows installer now ships a PyInstaller **onedir** build (exe + `_internal` DLLs) instead of onefile\n- In-app updater runs a silent install, waits for completion, then launches the installed app\n- Inno Setup closes lingering AssetValidator processes before replacing files",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.1/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.1/AssetValidator"
 }
