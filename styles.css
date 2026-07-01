@@ -143,6 +143,15 @@ a { color: inherit; text-decoration: none; }
 .byline {
   color: #9fb0d6;
 }
+.company-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+.company-link:hover {
+  color: #cbe0ff;
+}
 .icon-links {
   display: inline-flex;
   gap: 0.4rem;
