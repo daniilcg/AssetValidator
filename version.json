@@ -1,7 +1,7 @@
 {
-  "tag": "v2.8.1",
-  "version": "2.8.1",
-  "notes": "**Fix: Windows update crash (python311.dll / _MEI temp)**\n\n- Windows installer now ships a PyInstaller **onedir** build (exe + `_internal` DLLs) instead of onefile\n- In-app updater runs a silent install, waits for completion, then launches the installed app\n- Inno Setup closes lingering AssetValidator processes before replacing files",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.1/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.1/AssetValidator"
+  "tag": "v2.8.3",
+  "version": "2.8.3",
+  "notes": "**Fix: Open report in browser (ERR_EMPTY_RESPONSE)**\n\n- Wait until the local report HTTP server responds before opening the browser\n- Keep server instances alive; use a dedicated handler class on Windows\n- Open the browser from the GUI main thread after validation completes\n- Enabling \"Open report in browser\" auto-generates the HTML report if needed",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.3/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.3/AssetValidator"
 }

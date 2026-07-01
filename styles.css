@@ -239,6 +239,7 @@ section { padding: 2.5rem 0; scroll-margin-top: 92px; }
   display: block;
   width: 100%;
   height: auto;
+  image-rendering: auto;
 }
 
 .promo-card {
