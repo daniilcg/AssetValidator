@@ -1,8 +1,8 @@
 {
-  "tag": "v3.0.0",
-  "version": "3.0.0",
-  "notes": "**Major: studio profiles, sequences, closure, marketplace, macOS**\n\n- **530+ built-in checks** \u2014 image sequences (`sequences.*`), colorspace/OCIO hygiene (`colorspace.*`), publish manifest v2 (`manifest.*`)\n- **OBJ/MTL dependency closure** \u2014 `media.obj_dependency_closure` walks map paths and sidecars\n- **Profile rulesets** \u2014 `character`, `environment`, `fx`, `comp_plate`, `game_asset` (`scripts/generate_profile_rulesets.py`)\n- **Marketplace packs** \u2014 character-publish, netflix-delivery, unreal-f",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.0.0/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.0.0/AssetValidator",
-  "macos_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.0.0/AssetValidator-macos.zip"
+  "tag": "v3.0.1",
+  "version": "3.0.1",
+  "notes": "**Fix: in-app updater on Windows (updater killed with the GUI)**\n\n- Launch PowerShell updater with `CREATE_BREAKAWAY_FROM_JOB` so it survives `os._exit()` after the GUI closes\n- Use .NET `ProcessStartInfo` + `Verb=runas` instead of `Start-Process -Verb RunAs` (reliable Inno args)\n- Retry stopping lingering `AssetValidator.exe` processes before install; longer wait for DLL unlock\n- Logs: `%LOCALAPPDATA%\\AssetValidator\\update.log` and `update-inno.log`",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.0.1/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.0.1/AssetValidator",
+  "macos_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.0.1/AssetValidator-macos.zip"
 }
