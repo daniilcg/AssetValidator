@@ -1,7 +1,7 @@
 {
-  "tag": "v2.8.3",
-  "version": "2.8.3",
-  "notes": "**Fix: Open report in browser (ERR_EMPTY_RESPONSE)**\n\n- Wait until the local report HTTP server responds before opening the browser\n- Keep server instances alive; use a dedicated handler class on Windows\n- Open the browser from the GUI main thread after validation completes\n- Enabling \"Open report in browser\" auto-generates the HTML report if needed",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.3/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.3/AssetValidator"
+  "tag": "v2.8.4",
+  "version": "2.8.4",
+  "notes": "**Fix: Open report in browser (ERR_EMPTY_RESPONSE on Windows)**\n\n- Open the self-contained HTML report via `file://` instead of a local HTTP server\n- Windows fallback uses `os.startfile` when `webbrowser.open` fails\n- GUI opens the report from the main thread with the same file-based path",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.4/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v2.8.4/AssetValidator"
 }
