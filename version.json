@@ -1,8 +1,8 @@
 {
-  "tag": "v3.0.1",
-  "version": "3.0.1",
-  "notes": "**Fix: in-app updater on Windows (updater killed with the GUI)**\n\n- Launch PowerShell updater with `CREATE_BREAKAWAY_FROM_JOB` so it survives `os._exit()` after the GUI closes\n- Use .NET `ProcessStartInfo` + `Verb=runas` instead of `Start-Process -Verb RunAs` (reliable Inno args)\n- Retry stopping lingering `AssetValidator.exe` processes before install; longer wait for DLL unlock\n- Logs: `%LOCALAPPDATA%\\AssetValidator\\update.log` and `update-inno.log`",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.0.1/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.0.1/AssetValidator",
-  "macos_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.0.1/AssetValidator-macos.zip"
+  "tag": "v3.2.0",
+  "version": "3.2.0",
+  "notes": "**Major: depth, ruleset editor, incremental validation, integrations**\n\n- **530+ built-in checks** \u2014 glTF/GLB URI closure (`closure.gltf_textures`), Alembic header/time (`formats.abc_*`), FBX version/control, sequence duplicate/padding, EXR chromaticities\n- **Check docs fix** \u2014 Plugins dialog shows real per-check descriptions, config hints, scrollable docs (was generic prefix text only)\n- **Studio Ruleset Editor** \u2014 toggle checks, export custom YAML to `%LOCALAPPDATA%/AssetValidator/rulesets`\n- ",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.2.0/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.2.0/AssetValidator",
+  "macos_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.2.0/AssetValidator-macos.zip"
 }
