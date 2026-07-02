@@ -1,8 +1,8 @@
 {
-  "tag": "v3.4.1",
-  "version": "3.4.1",
-  "notes": "**Fix: visible in-app updates, readable toolbar buttons, site contact link**\n\n- **Windows updater** \u2014 progress window during install; Inno `/SILENT` progress bar; no more \u201cclose and nothing happens\u201d\n- **Toolbar buttons** \u2014 two-row layout + auto-shrinking font so labels stay readable\n- **Landing** \u2014 Segal Communications mailto link (`segalcomminc@gmail.com`)",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.1/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.1/AssetValidator",
-  "macos_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.1/AssetValidator-macos.zip"
+  "tag": "v3.4.2",
+  "version": "3.4.2",
+  "notes": "**Per-shot overlay lifecycle guardrails**\n\n- **`review_by`** \u2014 log warning when a per-shot overlay should be re-checked (stale `disable_checks`)\n- **`expires`** \u2014 expired overlays are ignored; base ruleset runs instead of masking regressions\n- **`created` / `max_age_days`** \u2014 age warnings when shot overlay JSON has not been reviewed (default 90 days)\n- New tests in `tests/test_per_shot_rules.py`",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.2/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.2/AssetValidator",
+  "macos_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.2/AssetValidator-macos.zip"
 }
