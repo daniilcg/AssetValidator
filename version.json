@@ -1,8 +1,8 @@
 {
-  "tag": "v3.4.2",
-  "version": "3.4.2",
-  "notes": "**Per-shot overlay lifecycle guardrails**\n\n- **`review_by`** \u2014 log warning when a per-shot overlay should be re-checked (stale `disable_checks`)\n- **`expires`** \u2014 expired overlays are ignored; base ruleset runs instead of masking regressions\n- **`created` / `max_age_days`** \u2014 age warnings when shot overlay JSON has not been reviewed (default 90 days)\n- New tests in `tests/test_per_shot_rules.py`",
-  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.2/AssetValidator-Setup.exe",
-  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.2/AssetValidator",
-  "macos_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.2/AssetValidator-macos.zip"
+  "tag": "v3.4.3",
+  "version": "3.4.3",
+  "notes": "**Fix: Windows in-app updater actually installs the new version**\n\n- **UAC/install wait** \u2014 use `Start-Process -Verb RunAs -Wait` (old `ProcessStartInfo` returned before install finished)\n- **Install path** \u2014 read Inno Setup `InstallLocation` from registry (not only `exe` parent folder)\n- **Progress window** \u2014 do not kill `--update-status` helper when stopping app instances\n- **Staged installer** \u2014 copy Setup.exe to `%LOCALAPPDATA%/AssetValidator/updates/`\n- **Startup warning** \u2014 show dialog if ",
+  "windows_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.3/AssetValidator-Setup.exe",
+  "linux_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.3/AssetValidator",
+  "macos_url": "https://github.com/daniilcg/AssetValidator/releases/download/v3.4.3/AssetValidator-macos.zip"
 }
